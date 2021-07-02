@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended"
+  ],
+  "rules": {
+    "quotes": ["warn", "single"],
+    "quote-props": ["warn", "as-needed"],
+    "no-multiple-empty-lines": ["warn", {"max": 1, "maxEOF": 1}],
+    "comma-dangle": ["warn", "always-multiline"]
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  }
+}

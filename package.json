@@ -1,0 +1,66 @@
+{
+  "name": "@fluxuator/eslint-config-fluxuator",
+  "version": "1.0.0",
+  "description": "ESLint configuration",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fluxuator/eslint-config-fluxuator.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "eslint-config"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "confusing-browser-globals": "^1.0.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/eslint-parser": "^7.0.0",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^7.5.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.0.0",
+    "typescript": ">=3.3.1 <4.4.0"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/eslint-parser": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.0.0",
+    "@typescript-eslint/parser": "^4.0.0",
+    "eslint": "^7.5.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "eslint-plugin-testing-library": "^3.9.0",
+    "typescript": ">=3.3.1 <4.4.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-jest": {
+      "optional": true
+    },
+    "eslint-plugin-testing-library": {
+      "optional": true
+    },
+    "@typescript-eslint/eslint-plugin": {
+      "optional": true
+    },
+    "@typescript-eslint/parser": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    }
+  }
+}
