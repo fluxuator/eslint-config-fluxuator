@@ -1,0 +1,8 @@
+.*
+*
+!*.js
+!rules
+!README.md
+!package.json
+!yarn.lock
+!LICENSE

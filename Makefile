@@ -26,7 +26,3 @@ lint-staged: ## Runs eslint for staged files
 	@yarn lint-staged
 .PHONY: lint
 
-publish: ## Publish package to NPM registry
-	@yarn publish --strict-semver --non-interactive
-.PHONY: publish
-
