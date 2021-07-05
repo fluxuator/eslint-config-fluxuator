@@ -1,5 +1,8 @@
 'use strict'
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+process.env.BABEL_ENV = process.env.NODE_ENV
+
 /**
  * Inspired by https://github.com/airbnb/javascript
  * and https://github.com/facebook/create-react-app but less opinionated.
