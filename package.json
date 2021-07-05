@@ -1,5 +1,5 @@
 {
-  "name": "@fluxuator/eslint-config-fluxuator",
+  "name": "eslint-config-fluxuator",
   "version": "1.0.0",
   "description": "ESLint configuration",
   "repository": {
