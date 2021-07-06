@@ -11,7 +11,7 @@ module.exports = {
   // 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/477)
   'no-undef': 'off',
 
-  'react/prop-types': 'off',
+  'react/prop-types': ['off', {}],
 
   // Add TypeScript specific rules (and turn off ESLint equivalents)
   '@typescript-eslint/consistent-type-assertions': 'warn',

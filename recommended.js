@@ -5,7 +5,7 @@
  */
 module.exports = {
   rules: Object.assign(
-    require('./rules/recommended.node.js'),
+    require('./rules/recommended.node'),
     require('./rules/recommended.react'),
   ),
   overrides: [

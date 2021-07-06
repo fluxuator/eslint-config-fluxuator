@@ -126,14 +126,6 @@ module.exports = {
   // https://github.com/yannickcr/eslint-plugin-react/issues/1773
   'react/prefer-stateless-function': 'off',
 
-  // Prevent missing props validation in a React component definition
-  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md
-  'react/prop-types': ['warn', {
-    ignore: [],
-    customValidators: [],
-    skipUndeclared: false,
-  }],
-
   // Prevent missing React when using JSX
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
   'react/react-in-jsx-scope': 'warn',
