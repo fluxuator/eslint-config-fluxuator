@@ -141,6 +141,7 @@ module.exports = {
   'import/first': 'error',
   'import/no-amd': 'error',
   'import/no-anonymous-default-export': 'warn',
+  'import/no-duplicates': 'warn',
   'import/no-webpack-loader-syntax': 'error',
 
 }
