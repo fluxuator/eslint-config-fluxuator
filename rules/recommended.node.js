@@ -120,4 +120,16 @@ module.exports = {
   // Disallow or enforce spaces inside of computed properties
   // https://eslint.org/docs/rules/computed-property-spacing
   'computed-property-spacing': ['warn', 'never'],
+
+  // Require or disallow padding lines between statements
+  // https://eslint.org/docs/rules/padding-line-between-statements
+  'padding-line-between-statements': [
+    'warn',
+    {blankLine: 'always', prev: '*', next: 'return'},
+    {blankLine: 'always', prev: ['const', 'let', 'var'], next: '*'},
+    {blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var']},
+    {blankLine: 'always', prev: 'directive', next: '*'},
+    {blankLine: 'any', prev: 'directive', next: 'directive'},
+    {blankLine: 'always', prev: ['case', 'default'], next: '*'},
+  ],
 }
