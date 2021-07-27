@@ -104,4 +104,20 @@ module.exports = {
   // require or disallow strict mode directives (strict)
   // https://eslint.org/docs/rules/strict
   strict: 'warn',
+
+  // Suggest using const
+  // https://eslint.org/docs/rules/prefer-const
+  'prefer-const': 'warn',
+
+  // Enforce consistent spacing inside braces
+  // https://eslint.org/docs/rules/object-curly-spacing
+  'object-curly-spacing': ['warn', 'always'],
+
+  // Disallow or enforce spaces inside of brackets
+  // https://eslint.org/docs/rules/array-bracket-spacing
+  'array-bracket-spacing': ['warn', 'never'],
+
+  // Disallow or enforce spaces inside of computed properties
+  // https://eslint.org/docs/rules/computed-property-spacing
+  'computed-property-spacing': ['warn', 'never'],
 }
