@@ -65,6 +65,9 @@ module.exports = {
         'sibling',
         'index',
       ],
+      pathGroups: [
+        {pattern: '~*', group: 'external'},
+      ],
     },
   ],
 

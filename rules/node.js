@@ -100,7 +100,11 @@ module.exports = {
     },
   ],
   'no-useless-computed-key': 'warn',
+
+  // Disallow unnecessary concatenation of strings
+  // https://eslint.org/docs/rules/no-useless-concat
   'no-useless-concat': 'warn',
+
   'no-useless-constructor': 'warn',
   'no-useless-escape': 'warn',
   'no-useless-rename': [
@@ -111,6 +115,8 @@ module.exports = {
       ignoreExport: false,
     },
   ],
+
+  'no-useless-template-literals': 'warn',
   'no-with': 'warn',
   'no-whitespace-before-property': 'warn',
   'react-hooks/exhaustive-deps': 'warn',
