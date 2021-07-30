@@ -66,6 +66,7 @@ module.exports = {
         'index',
       ],
       pathGroups: [
+        {pattern: '~', group: 'external'},
         {pattern: '~/*', group: 'external'},
       ],
     },
@@ -141,5 +142,18 @@ module.exports = {
     {blankLine: 'always', prev: 'import', next: '*'},
     {blankLine: 'always', prev: '*', next: 'export'},
     {blankLine: 'any', prev: ['import', 'export'], next: ['import', 'export']},
+  ],
+
+  // Disallow specific imports
+  // https://eslint.org/docs/rules/no-restricted-imports
+  'no-restricted-imports': [
+    'warn', {
+      patterns: [
+        {
+          group: ['../../*', 'src', 'src/*'],
+          message: 'Please use the ~/path/to/module alias instead.',
+        },
+      ],
+    },
   ],
 }
