@@ -116,7 +116,6 @@ module.exports = {
     },
   ],
 
-  'no-useless-template-literals': 'warn',
   'no-with': 'warn',
   'no-whitespace-before-property': 'warn',
   'react-hooks/exhaustive-deps': 'warn',
