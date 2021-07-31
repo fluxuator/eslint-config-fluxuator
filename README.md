@@ -94,6 +94,29 @@ yarn add -D jest eslint-plugin-jest@^24.0.0 eslint-plugin-testing-library@^3.9.0
 }
 ```
 
+## MDX rules
+
+This config also ships with optional [MDX](https://github.com/mdx-js/mdx) rules for ESLint (based
+on [`eslint-plugin-mdx`](https://github.com/mdx-js/eslint-mdx)).
+
+1. Install the ESLint plugin for MDX (if you don't already have it installed).
+
+```sh
+yarn add -D eslint-plugin-mdx
+```
+
+2. Enable these rules by adding the MDX config to the `extends` array in your ESLint config.
+
+```json
+{
+  "extends": [
+    "fluxuator",
+    "fluxuator/jest",
+    "fluxuator/mdx"
+  ]
+}
+```
+
 ## Accessibility Checks
 
 Some basic rules from the [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin are
