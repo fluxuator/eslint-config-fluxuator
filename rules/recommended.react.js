@@ -215,7 +215,7 @@ module.exports = {
 
   // only .jsx and .tsx files may have JSX
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
-  'react/jsx-filename-extension': ['warn', {extensions: ['.jsx', '.tsx']}],
+  'react/jsx-filename-extension': ['warn', {extensions: ['.jsx', '.tsx', '.mdx']}],
 
   // prevent accidental JS comments from being injected into JSX as text
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-comment-textnodes.md
