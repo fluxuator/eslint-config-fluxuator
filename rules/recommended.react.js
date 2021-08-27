@@ -28,7 +28,7 @@ module.exports = {
   }],
 
   // Forbid certain propTypes (any, array, object)
-  // https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/forbid-prop-types.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
   'react/forbid-prop-types': ['warn', {
     forbid: ['any', 'array', 'object'],
     checkContextTypes: true,
@@ -139,7 +139,7 @@ module.exports = {
   'react/self-closing-comp': 'warn',
 
   // Enforce component methods order
-  // https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/sort-comp.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
   'react/sort-comp': ['warn', {
     order: [
       'static-variables',
@@ -186,7 +186,7 @@ module.exports = {
   }],
 
   // Prevent missing parentheses around multilines JSX
-  // https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/jsx-wrap-multilines.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md
   'react/jsx-wrap-multilines': ['warn', {
     declaration: 'parens-new-line',
     assignment: 'parens-new-line',
@@ -210,7 +210,7 @@ module.exports = {
   'react/jsx-indent': ['warn', 2],
 
   // Disallow target='_blank' on links
-  // https://github.com/yannickcr/eslint-plugin-react/blob/ac102885765be5ff37847a871f239c6703e1c7cc/docs/rules/jsx-no-target-blank.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
   'react/jsx-no-target-blank': ['warn', {enforceDynamicLinks: 'always'}],
 
   // only .jsx and .tsx files may have JSX
@@ -253,7 +253,7 @@ module.exports = {
   'react/no-children-prop': 'warn',
 
   // Validate whitespace in and around the JSX opening and closing brackets
-  // https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/jsx-tag-spacing.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
   'react/jsx-tag-spacing': ['warn', {
     closingSlash: 'never',
     beforeSelfClosing: 'always',
@@ -266,7 +266,7 @@ module.exports = {
   'react/no-array-index-key': 'warn',
 
   // Enforce a defaultProps definition for every prop that is not a required prop
-  // https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/require-default-props.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
   'react/require-default-props': ['warn', {
     forbidDefaultForRequired: true,
     ignoreFunctionalComponents: true,
@@ -305,11 +305,11 @@ module.exports = {
   'react/jsx-curly-brace-presence': ['warn', {props: 'never', children: 'never'}],
 
   // Prevent using this.state within a this.setState
-  // https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/no-access-state-in-setstate.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-access-state-in-setstate.md
   'react/no-access-state-in-setstate': 'warn',
 
   // Prevent usage of button elements without an explicit type attribute
-  // https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/button-has-type.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/button-has-type.md
   'react/button-has-type': ['warn', {
     button: true,
     submit: true,
@@ -317,15 +317,15 @@ module.exports = {
   }],
 
   // Prevent this from being used in stateless functional components
-  // https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/no-this-in-sfc.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-this-in-sfc.md
   'react/no-this-in-sfc': 'warn',
 
   // Disallow multiple spaces between inline JSX props
-  // https://github.com/yannickcr/eslint-plugin-react/blob/ac102885765be5ff37847a871f239c6703e1c7cc/docs/rules/jsx-props-no-multi-spaces.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-multi-spaces.md
   'react/jsx-props-no-multi-spaces': 'warn',
 
   // Prevent usage of UNSAFE_ methods
-  // https://github.com/yannickcr/eslint-plugin-react/blob/157cc932be2cfaa56b3f5b45df6f6d4322a2f660/docs/rules/no-unsafe.md
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unsafe.md
   'react/no-unsafe': 'warn',
 
   // Enforce defaultProps declarations alphabetical sorting
