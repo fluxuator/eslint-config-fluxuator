@@ -94,4 +94,8 @@ module.exports = {
 
   // Other overridden rules for typescript
   'react/default-props-match-prop-types': 'off',
+
+  // Forbid certain propTypes
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
+  'react/forbid-prop-types': 'off',
 }
