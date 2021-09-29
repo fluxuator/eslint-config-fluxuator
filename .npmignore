@@ -1,6 +1,7 @@
 .*
 *
 !*.js
+commitlint.config.js
 !rules
 !README.md
 !package.json
