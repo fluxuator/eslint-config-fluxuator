@@ -34,7 +34,7 @@
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
     "@commitlint/cz-commitlint": "^13.2.0",
-    "@typescript-eslint/parser": "^4.0.1",
+    "@typescript-eslint/parser": "^4.32.0",
     "commitizen": "^4.2.4",
     "commitlint": "^13.2.0",
     "eslint": "^7.5.0",
