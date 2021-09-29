@@ -8,7 +8,7 @@ const restrictedGlobals = require('confusing-browser-globals')
 module.exports = {
   // http://eslint.org/docs/rules/
   'array-callback-return': 'warn',
-  'default-case': ['warn', {commentPattern: '^no default$'}],
+  'default-case': ['warn', { commentPattern: '^no default$' }],
   'dot-location': ['warn', 'property'],
   eqeqeq: ['warn', 'smart'],
   'new-parens': 'warn',
@@ -35,7 +35,7 @@ module.exports = {
   'no-invalid-regexp': 'warn',
   'no-iterator': 'warn',
   'no-label-var': 'warn',
-  'no-labels': ['warn', {allowLoop: true, allowSwitch: false}],
+  'no-labels': ['warn', { allowLoop: true, allowSwitch: false }],
   'no-lone-blocks': 'warn',
   'no-loop-func': 'warn',
   'no-mixed-operators': [
@@ -148,5 +148,4 @@ module.exports = {
   'import/no-anonymous-default-export': 'warn',
   'import/no-duplicates': 'warn',
   'import/no-webpack-loader-syntax': 'error',
-
 }

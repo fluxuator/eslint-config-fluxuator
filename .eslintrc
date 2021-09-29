@@ -1,12 +1,12 @@
 {
   "root": true,
-  "extends": [
-    "eslint:recommended"
-  ],
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["prettier"],
   "rules": {
+    "prettier/prettier": "warn",
     "quotes": ["warn", "single"],
     "quote-props": ["warn", "as-needed"],
-    "no-multiple-empty-lines": ["warn", {"max": 1, "maxEOF": 1}],
+    "no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 1 }],
     "comma-dangle": ["warn", "always-multiline"]
   },
   "parserOptions": {

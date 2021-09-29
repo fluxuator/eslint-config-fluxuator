@@ -24,9 +24,7 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^4.0.0 @typescrip
 
 ```json
 {
-  "extends": [
-    "fluxuator"
-  ]
+  "extends": ["fluxuator"]
 }
 ```
 
@@ -35,9 +33,7 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^4.0.0 @typescrip
 
 ```json
 {
-  "extends": [
-    "fluxuator"
-  ],
+  "extends": ["fluxuator"],
   "rules": {
     "some-annoying-rule": "off"
   }
@@ -49,10 +45,7 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^4.0.0 @typescrip
 
 ```json
 {
-  "extends": [
-    "fluxuator",
-    "fluxuator/recommended"
-  ]
+  "extends": ["fluxuator", "fluxuator/recommended"]
 }
 ```
 
@@ -87,10 +80,7 @@ yarn add -D jest eslint-plugin-jest@^24.0.0 eslint-plugin-testing-library@^3.9.0
 
 ```json
 {
-  "extends": [
-    "fluxuator",
-    "fluxuator/jest"
-  ]
+  "extends": ["fluxuator", "fluxuator/jest"]
 }
 ```
 
@@ -109,11 +99,7 @@ yarn add -D eslint-plugin-mdx
 
 ```json
 {
-  "extends": [
-    "fluxuator",
-    "fluxuator/jest",
-    "fluxuator/mdx"
-  ]
+  "extends": ["fluxuator", "fluxuator/jest", "fluxuator/mdx"]
 }
 ```
 
@@ -127,12 +113,7 @@ this content:
 
 ```json
 {
-  "extends": [
-    "fluxuator",
-    "plugin:jsx-a11y/recommended"
-  ],
-  "plugins": [
-    "jsx-a11y"
-  ]
+  "extends": ["fluxuator", "plugin:jsx-a11y/recommended"],
+  "plugins": ["jsx-a11y"]
 }
 ```

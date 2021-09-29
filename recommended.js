@@ -4,10 +4,7 @@
  * This file contains the recommended ESLint rules
  */
 module.exports = {
-  rules: Object.assign(
-    require('./rules/recommended.node'),
-    require('./rules/recommended.react'),
-  ),
+  rules: Object.assign(require('./rules/recommended.node'), require('./rules/recommended.react')),
   overrides: [
     {
       files: ['**/*.ts?(x)'],

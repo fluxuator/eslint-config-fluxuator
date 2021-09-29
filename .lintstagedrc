@@ -1,5 +1,4 @@
 {
-  "*.js": [
-    "yarn eslint --max-warnings=0 --fix"
-  ]
+  "*.js": "yarn eslint --max-warnings=0 --fix",
+  "!*.js": "yarn prettier --write"
 }

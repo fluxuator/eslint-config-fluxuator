@@ -14,30 +14,38 @@ module.exports = {
 
   // Enforces naming conventions for everything across a codebase (naming-convention)
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
-  '@typescript-eslint/naming-convention': ['warn', {
-    selector: 'variable',
-    format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-    leadingUnderscore: 'allow',
-  }, {
-    selector: 'parameter',
-    format: ['camelCase', 'PascalCase'],
-    leadingUnderscore: 'allow',
-  }, {
-    selector: ['classProperty', 'classMethod'],
-    format: ['camelCase'],
-    modifiers: ['private'],
-    leadingUnderscore: 'allow',
-  }, {
-    selector: 'memberLike',
-    format: ['camelCase', 'PascalCase'],
-    modifiers: ['private'],
-  }, {
-    selector: 'objectLiteralProperty',
-    format: ['camelCase', 'PascalCase', 'snake_case'],
-  }, {
-    selector: 'typeLike',
-    format: ['PascalCase'],
-  }],
+  '@typescript-eslint/naming-convention': [
+    'warn',
+    {
+      selector: 'variable',
+      format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+      leadingUnderscore: 'allow',
+    },
+    {
+      selector: 'parameter',
+      format: ['camelCase', 'PascalCase'],
+      leadingUnderscore: 'allow',
+    },
+    {
+      selector: ['classProperty', 'classMethod'],
+      format: ['camelCase'],
+      modifiers: ['private'],
+      leadingUnderscore: 'allow',
+    },
+    {
+      selector: 'memberLike',
+      format: ['camelCase', 'PascalCase'],
+      modifiers: ['private'],
+    },
+    {
+      selector: 'objectLiteralProperty',
+      format: ['camelCase', 'PascalCase', 'snake_case'],
+    },
+    {
+      selector: 'typeLike',
+      format: ['PascalCase'],
+    },
+  ],
 
   // Prefer an interface declaration over a type literal (type T = { ... })
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-interface.md
@@ -65,9 +73,13 @@ module.exports = {
 
   // Enforce consistent indentation (indent)
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
-  '@typescript-eslint/indent': ['warn', 2, {
-    SwitchCase: 1,
-  }],
+  '@typescript-eslint/indent': [
+    'warn',
+    2,
+    {
+      SwitchCase: 1,
+    },
+  ],
   // Disabled in favour of extended rule `@typescript-eslint/indent`
   indent: 'off',
 
@@ -79,12 +91,15 @@ module.exports = {
 
   // Require a specific member delimiter style for interfaces and type literals
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-delimiter-style.md
-  '@typescript-eslint/member-delimiter-style': ['warn', {
-    multiline: {
-      delimiter: 'none',
-      requireLast: true,
+  '@typescript-eslint/member-delimiter-style': [
+    'warn',
+    {
+      multiline: {
+        delimiter: 'none',
+        requireLast: true,
+      },
     },
-  }],
+  ],
 
   // Require or disallow semicolons instead of ASI
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md

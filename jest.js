@@ -1,16 +1,10 @@
 'use strict'
 
 module.exports = {
-  plugins: [
-    'jest',
-    'testing-library',
-  ],
+  plugins: ['jest', 'testing-library'],
   overrides: [
     {
-      files: [
-        '**/__tests__/**/*',
-        '**/*.{spec,test}.*',
-      ],
+      files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
       env: {
         'jest/globals': true,
       },

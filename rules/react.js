@@ -5,7 +5,7 @@
  */
 module.exports = {
   // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
-  'react/forbid-foreign-prop-types': ['warn', {allowInPropTypes: true}],
+  'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }],
   'react/jsx-no-comment-textnodes': 'warn',
   'react/jsx-no-duplicate-props': 'warn',
   'react/jsx-no-target-blank': 'warn',
@@ -38,9 +38,12 @@ module.exports = {
 
   // Prevent missing props validation in a React component definition
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md
-  'react/prop-types': ['warn', {
-    ignore: [],
-    customValidators: [],
-    skipUndeclared: false,
-  }],
+  'react/prop-types': [
+    'warn',
+    {
+      ignore: [],
+      customValidators: [],
+      skipUndeclared: false,
+    },
+  ],
 }

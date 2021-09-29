@@ -6,7 +6,7 @@
 module.exports = {
   semi: ['warn', 'never'],
 
-  indent: ['warn', 2, {SwitchCase: 1}],
+  indent: ['warn', 2, { SwitchCase: 1 }],
 
   // Enforce consistent linebreak style for operators
   // https://eslint.org/docs/rules/operator-linebreak
@@ -22,11 +22,11 @@ module.exports = {
 
   'max-len': ['warn', 120, 2],
 
-  'no-multiple-empty-lines': ['warn', {max: 1, maxEOF: 1}],
+  'no-multiple-empty-lines': ['warn', { max: 1, maxEOF: 1 }],
 
   'arrow-body-style': ['warn', 'as-needed'],
 
-  'arrow-parens': ['warn', 'as-needed', {requireForBlockBody: true}],
+  'arrow-parens': ['warn', 'as-needed', { requireForBlockBody: true }],
 
   quotes: ['warn', 'single'],
 
@@ -34,12 +34,13 @@ module.exports = {
 
   'function-paren-newline': ['warn', 'consistent'],
 
-  'object-curly-newline': ['warn', {consistent: true}],
+  'object-curly-newline': ['warn', { consistent: true }],
 
   // Require or disallow trailing commas
   // https://eslint.org/docs/rules/comma-dangle
   'comma-dangle': [
-    'warn', {
+    'warn',
+    {
       arrays: 'always-multiline',
       objects: 'always-multiline',
       imports: 'always-multiline',
@@ -53,27 +54,22 @@ module.exports = {
 
   'template-curly-spacing': ['warn', 'never'],
 
-  'no-param-reassign': ['warn', {props: false}],
+  'no-param-reassign': ['warn', { props: false }],
 
   'import/order': [
-    'warn', {
-      groups: [
-        'builtin',
-        'external',
-        'internal',
-        'parent',
-        'sibling',
-        'index',
-      ],
+    'warn',
+    {
+      groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
       pathGroups: [
-        {pattern: '~', group: 'external'},
-        {pattern: '~/*', group: 'external'},
+        { pattern: '~', group: 'external' },
+        { pattern: '~/*', group: 'external' },
       ],
     },
   ],
 
   'sort-imports': [
-    'warn', {
+    'warn',
+    {
       ignoreCase: false,
       ignoreDeclarationSort: true,
       ignoreMemberSort: false,
@@ -83,19 +79,22 @@ module.exports = {
 
   // Prevents unnecessary path segments in import and require statements.
   // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-useless-path-segments.md
-  'import/no-useless-path-segments': ['warn', {noUselessIndex: true}],
+  'import/no-useless-path-segments': ['warn', { noUselessIndex: true }],
 
   // Reports if a module's default export is unnamed.
   // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-anonymous-default-export.md
-  'import/no-anonymous-default-export': ['warn', {
-    allowArray: true,
-    allowArrowFunction: true,
-    allowAnonymousClass: false,
-    allowAnonymousFunction: true,
-    allowCallExpression: true,
-    allowLiteral: false,
-    allowObject: true,
-  }],
+  'import/no-anonymous-default-export': [
+    'warn',
+    {
+      allowArray: true,
+      allowArrowFunction: true,
+      allowAnonymousClass: false,
+      allowAnonymousFunction: true,
+      allowCallExpression: true,
+      allowLiteral: false,
+      allowObject: true,
+    },
+  ],
 
   // Require quotes around object literal property names
   // https://eslint.org/docs/rules/quote-props
@@ -129,26 +128,27 @@ module.exports = {
   // https://eslint.org/docs/rules/padding-line-between-statements
   'padding-line-between-statements': [
     'warn',
-    {blankLine: 'always', prev: '*', next: 'return'},
+    { blankLine: 'always', prev: '*', next: 'return' },
 
-    {blankLine: 'always', prev: ['const', 'let', 'var'], next: '*'},
-    {blankLine: 'always', prev: '*', next: ['const', 'let', 'var']},
-    {blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var']},
+    { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+    { blankLine: 'always', prev: '*', next: ['const', 'let', 'var'] },
+    { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
 
-    {blankLine: 'always', prev: 'directive', next: '*'},
-    {blankLine: 'any', prev: 'directive', next: 'directive'},
+    { blankLine: 'always', prev: 'directive', next: '*' },
+    { blankLine: 'any', prev: 'directive', next: 'directive' },
 
-    {blankLine: 'always', prev: ['case', 'default'], next: '*'},
+    { blankLine: 'always', prev: ['case', 'default'], next: '*' },
 
-    {blankLine: 'always', prev: 'import', next: '*'},
-    {blankLine: 'always', prev: '*', next: 'export'},
-    {blankLine: 'any', prev: ['import', 'export'], next: ['import', 'export']},
+    { blankLine: 'always', prev: 'import', next: '*' },
+    { blankLine: 'always', prev: '*', next: 'export' },
+    { blankLine: 'any', prev: ['import', 'export'], next: ['import', 'export'] },
   ],
 
   // Disallow specific imports
   // https://eslint.org/docs/rules/no-restricted-imports
   'no-restricted-imports': [
-    'warn', {
+    'warn',
+    {
       patterns: [
         {
           group: ['../../*', 'src', 'src/*'],

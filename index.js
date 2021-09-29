@@ -15,12 +15,7 @@ module.exports = {
 
   parser: '@babel/eslint-parser',
 
-  plugins: [
-    'import',
-    'jsx-a11y',
-    'react',
-    'react-hooks',
-  ],
+  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks'],
 
   env: {
     browser: true,
@@ -57,18 +52,12 @@ module.exports = {
         // typescript-eslint specific options
         warnOnUnsupportedTypeScriptVersion: true,
       },
-      plugins: [
-        '@typescript-eslint',
-      ],
+      plugins: ['@typescript-eslint'],
       // If adding a typescript-eslint version of an existing ESLint rule,
       // make sure to disable the ESLint rule here.
       rules: require('./rules/typescript'),
     },
   ],
 
-  rules: Object.assign(
-    require('./rules/node'),
-    require('./rules/react'),
-    require('./rules/a11y'),
-  ),
+  rules: Object.assign(require('./rules/node'), require('./rules/react'), require('./rules/a11y')),
 }
