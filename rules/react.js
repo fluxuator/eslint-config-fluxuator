@@ -36,6 +36,8 @@ module.exports = {
   // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
   'react-hooks/rules-of-hooks': 'error',
 
+  'react-hooks/exhaustive-deps': 'warn',
+
   // Prevent missing props validation in a React component definition
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md
   'react/prop-types': [
