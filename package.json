@@ -103,6 +103,7 @@
     }
   },
   "release": {
+    "tagFormat": "${version}",
     "branches": [
       "main"
     ],

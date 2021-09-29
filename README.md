@@ -5,7 +5,7 @@ This package includes the shareable [ESLint](https://eslint.org) configuration t
 It was inspired by https://github.com/airbnb/javascript and https://github.com/facebook/create-react-app but less
 opinionated.
 
-## Installation
+## Installation (React app)
 
 1. Install this package, ESLint and the necessary plugins
 
@@ -60,6 +60,43 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^4.0.0 @typescrip
     ...
   },
   ...
+}
+```
+
+## Installation (NodeJS app)
+
+1. Install this package, ESLint and the necessary plugins
+
+```sh
+yarn add -D eslint-config-fluxuator eslint@^7.5.0
+```
+
+2. Create a file named `.eslintrc` with following contents in the root folder of your project:
+
+```json
+{
+  "extends": ["fluxuator/node"]
+}
+```
+
+3. You can override the settings from `eslint-config-fluxuator` by editing the `.eslintrc` file. Learn more
+   about [configuring ESLint](http://eslint.org/docs/user-guide/configuring) on the ESLint website.
+
+```json
+{
+  "extends": ["fluxuator/node"],
+  "rules": {
+    "some-annoying-rule": "off"
+  }
+}
+```
+
+3. If you want to add more recommended rules, you can do it by adding the `fluxuator/jest` to the extends array in your
+   ESLint config.
+
+```json
+{
+  "extends": ["fluxuator/node", "fluxuator/node-recommended"]
 }
 ```
 
