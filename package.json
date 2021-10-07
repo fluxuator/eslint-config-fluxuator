@@ -29,7 +29,7 @@
     "confusing-browser-globals": "^1.0.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@babel/eslint-parser": "^7.15.8",
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
@@ -48,7 +48,7 @@
     "typescript": ">=3.3.1 <4.5.0"
   },
   "peerDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@babel/eslint-parser": "^7.15.8",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.0.0",
