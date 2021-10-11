@@ -31,7 +31,14 @@ module.exports = {
   'react/require-render-return': 'error',
   'react/style-prop-object': 'warn',
   'react/jsx-uses-vars': 'warn',
+
+  // Prevent React to be incorrectly marked as unused
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
   'react/jsx-uses-react': 'warn',
+
+  // Prevent missing React when using JSX
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
+  'react/react-in-jsx-scope': 'warn',
 
   // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
   'react-hooks/rules-of-hooks': 'error',

@@ -84,11 +84,15 @@ module.exports = {
     },
   ],
   'no-unused-labels': 'warn',
+
+  // Disallow Unused Variables
+  // https://eslint.org/docs/rules/no-unused-vars#options
   'no-unused-vars': [
     'warn',
     {
       args: 'none',
       ignoreRestSiblings: true,
+      varsIgnorePattern: '^jsx$',
     },
   ],
   'no-use-before-define': [

@@ -38,12 +38,15 @@ module.exports = {
       allowTaggedTemplates: true,
     },
   ],
+
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
   'no-unused-vars': 'off',
   '@typescript-eslint/no-unused-vars': [
     'warn',
     {
       args: 'none',
       ignoreRestSiblings: true,
+      varsIgnorePattern: '^jsx$',
     },
   ],
   'no-useless-constructor': 'off',

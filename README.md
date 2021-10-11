@@ -49,7 +49,9 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^4.0.0 @typescrip
 }
 ```
 
-4. Add a script to you package.json to check your project with Eslint.
+4. If you are using the new JSX transform from React 17, add "plugin:react/jsx-runtime" to "extends" to disable the relevant rules.
+
+5. Add a script to you package.json to check your project with Eslint.
 
 ```json
 {

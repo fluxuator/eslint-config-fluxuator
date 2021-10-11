@@ -92,10 +92,6 @@ module.exports = {
     },
   ],
 
-  // Prevent React to be incorrectly marked as unused
-  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
-  'react/jsx-uses-react': [1],
-
   // Prevent variables used in JSX to be incorrectly marked as unused
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md
   'react/jsx-uses-vars': 'warn',
@@ -137,10 +133,6 @@ module.exports = {
   // 'react/prefer-stateless-function': ['warn', { ignorePureComponents: true }],
   // https://github.com/yannickcr/eslint-plugin-react/issues/1773
   'react/prefer-stateless-function': 'off',
-
-  // Prevent missing React when using JSX
-  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
-  'react/react-in-jsx-scope': 'warn',
 
   // Require render() methods to return something
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-render-return.md
