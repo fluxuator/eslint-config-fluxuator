@@ -34,7 +34,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Audit
-        continue-on-error: true
+        continue-on-error: false
         run: yarn audit
 
       - name: Install dependencies
