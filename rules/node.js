@@ -90,6 +90,7 @@ module.exports = {
   'no-unused-vars': [
     'warn',
     {
+      vars: 'all',
       args: 'none',
       ignoreRestSiblings: true,
       varsIgnorePattern: '^jsx$',

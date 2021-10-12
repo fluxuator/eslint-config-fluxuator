@@ -441,48 +441,48 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
-"@typescript-eslint/parser@^5.0.0-alpha.48":
-  version "5.0.0-alpha.48"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.0.0-alpha.48.tgz#e59be9ff9cc397abe78644b274090aa31cae1741"
-  integrity sha512-dtD93b82OXpgRgKoFDHUBGaB4ecQDxKg34wor+IBj11yWwLAwKBQFBcP2wNYVtbEcE+/zbCXO8sVeuhQIM9NBg==
+"@typescript-eslint/parser@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.0.0.tgz#50d1be2e0def82d73e863cceba74aeeac9973592"
+  integrity sha512-B6D5rmmQ14I1fdzs71eL3DAuvnPHTY/t7rQABrL9BLnx/H51Un8ox1xqYAchs0/V2trcoyxB1lMJLlrwrJCDgw==
   dependencies:
-    "@typescript-eslint/scope-manager" "5.0.0-alpha.48+f893d1b9"
-    "@typescript-eslint/types" "5.0.0-alpha.48+f893d1b9"
-    "@typescript-eslint/typescript-estree" "5.0.0-alpha.48+f893d1b9"
+    "@typescript-eslint/scope-manager" "5.0.0"
+    "@typescript-eslint/types" "5.0.0"
+    "@typescript-eslint/typescript-estree" "5.0.0"
     debug "^4.3.1"
 
-"@typescript-eslint/scope-manager@5.0.0-alpha.48+f893d1b9":
-  version "5.0.0-alpha.48"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.0.0-alpha.48.tgz#60567ccc4fdcab0f4f593980e39fcfafc3d79b6f"
-  integrity sha512-L85QpuKb6pGf98Ia4zJpXLhT7ng2Y4WQQSuBN6I1WPOPv9RO1R8JLAx+PVvfgnyxm/9oDHsb3s6Yk/Hp743Ndw==
+"@typescript-eslint/scope-manager@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.0.0.tgz#aea0fb0e2480c1169a02e89d9005ac3f2835713f"
+  integrity sha512-5RFjdA/ain/MDUHYXdF173btOKncIrLuBmA9s6FJhzDrRAyVSA+70BHg0/MW6TE+UiKVyRtX91XpVS0gVNwVDQ==
   dependencies:
-    "@typescript-eslint/types" "5.0.0-alpha.48+f893d1b9"
-    "@typescript-eslint/visitor-keys" "5.0.0-alpha.48+f893d1b9"
+    "@typescript-eslint/types" "5.0.0"
+    "@typescript-eslint/visitor-keys" "5.0.0"
 
-"@typescript-eslint/types@5.0.0-alpha.48+f893d1b9":
-  version "5.0.0-alpha.48"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.0.0-alpha.48.tgz#ef007538a8b854a8e7910300ba7d96933877534c"
-  integrity sha512-Fz1dz4Hti7x3ZXJVe/8U9cjvrF9I0EblQB+LFRdi55x4TB/19n/5wryirqG6QdszIKK08Qjh4HOceBEG4GFX2g==
+"@typescript-eslint/types@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.0.0.tgz#25d93f6d269b2d25fdc51a0407eb81ccba60eb0f"
+  integrity sha512-dU/pKBUpehdEqYuvkojmlv0FtHuZnLXFBn16zsDmlFF3LXkOpkAQ2vrKc3BidIIve9EMH2zfTlxqw9XM0fFN5w==
 
-"@typescript-eslint/typescript-estree@5.0.0-alpha.48+f893d1b9":
-  version "5.0.0-alpha.48"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.0.0-alpha.48.tgz#9d87901a05ee0a2adda4efdf4e7eda50af51ea0b"
-  integrity sha512-D0nvYPjPStRvIE29GhFioJ5VlMCbIUO0eupYjGVWKxK3n0a2Y4Z8cAvSxZZ8Acv1P/UDKCPk0reoOFJvLvNDhA==
+"@typescript-eslint/typescript-estree@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.0.0.tgz#bc20f413c6e572c7309dbe5fa3be027984952af3"
+  integrity sha512-V/6w+PPQMhinWKSn+fCiX5jwvd1vRBm7AX7SJQXEGQtwtBvjMPjaU3YTQ1ik2UF1u96X7tsB96HMnulG3eLi9Q==
   dependencies:
-    "@typescript-eslint/types" "5.0.0-alpha.48+f893d1b9"
-    "@typescript-eslint/visitor-keys" "5.0.0-alpha.48+f893d1b9"
+    "@typescript-eslint/types" "5.0.0"
+    "@typescript-eslint/visitor-keys" "5.0.0"
     debug "^4.3.1"
     globby "^11.0.3"
     is-glob "^4.0.1"
     semver "^7.3.5"
     tsutils "^3.21.0"
 
-"@typescript-eslint/visitor-keys@5.0.0-alpha.48+f893d1b9":
-  version "5.0.0-alpha.48"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.0.0-alpha.48.tgz#a54585a0c493b49fcfdc61f9caae12bbbc4f6bb1"
-  integrity sha512-ZAyMBRRtY+5xiNynZCaQ+6aJ3q6UVePL+emrglf89+2ePoX8SiNoDQm2KwKGzWmH/IT5Zq/eplLAKTP5Wr0Cwg==
+"@typescript-eslint/visitor-keys@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.0.0.tgz#b789f7cd105e59bee5c0983a353942a5a48f56df"
+  integrity sha512-yRyd2++o/IrJdyHuYMxyFyBhU762MRHQ/bAGQeTnN3pGikfh+nEmM61XTqaDH1XDp53afZ+waXrk0ZvenoZ6xw==
   dependencies:
-    "@typescript-eslint/types" "5.0.0-alpha.48+f893d1b9"
+    "@typescript-eslint/types" "5.0.0"
     eslint-visitor-keys "^3.0.0"
 
 JSONStream@^1.0.4:

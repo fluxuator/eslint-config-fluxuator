@@ -44,6 +44,7 @@ module.exports = {
   '@typescript-eslint/no-unused-vars': [
     'warn',
     {
+      vars: 'all',
       args: 'none',
       ignoreRestSiblings: true,
       varsIgnorePattern: '^jsx$',

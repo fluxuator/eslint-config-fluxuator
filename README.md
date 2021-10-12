@@ -10,14 +10,14 @@ opinionated.
 1. Install this package, ESLint and the necessary plugins
 
 ```sh
-yarn add -D eslint-config-fluxuator eslint@^7.5.0 @babel/eslint-parser@^7.0.0 eslint-plugin-import@^2.22.0 \
+yarn add -D eslint-config-fluxuator eslint@^8.0.0 @babel/eslint-parser@^7.0.0 eslint-plugin-import@^2.22.0 \
             eslint-plugin-jsx-a11y@^6.3.1 eslint-plugin-react@^7.20.3 eslint-plugin-react-hooks@^4.0.8
 ```
 
 for typescript projects install additional plugins
 
 ```shell
-yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^4.0.0 @typescript-eslint/parser@^4.0.0
+yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^5.0.0 @typescript-eslint/parser@^5.0.0
 ```
 
 2. Create a file named `.eslintrc` with following contents in the root folder of your project:
@@ -70,7 +70,7 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^4.0.0 @typescrip
 1. Install this package, ESLint and the necessary plugins
 
 ```sh
-yarn add -D eslint-config-fluxuator eslint@^7.5.0 eslint-plugin-import@^2.22.0
+yarn add -D eslint-config-fluxuator eslint@^8.0.0 eslint-plugin-import@^2.22.0
 ```
 
 2. Create a file named `.eslintrc` with following contents in the root folder of your project:
