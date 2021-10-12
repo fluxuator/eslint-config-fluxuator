@@ -56,6 +56,7 @@
   "peerDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/eslint-parser": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.5.0",
@@ -73,6 +74,9 @@
       "optional": true
     },
     "@babel/eslint-parser": {
+      "optional": true
+    },
+    "@babel/preset-react": {
       "optional": true
     },
     "eslint-plugin-jest": {
