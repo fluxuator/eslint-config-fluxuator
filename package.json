@@ -35,7 +35,7 @@
     "@babel/eslint-parser": "^7.16.3",
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
-    "@commitlint/cz-commitlint": "^14.1.0",
+    "@commitlint/cz-commitlint": "^15.0.0",
     "@typescript-eslint/parser": "^5.4.0",
     "commitizen": "^4.2.4",
     "commitlint": "^14.1.0",
