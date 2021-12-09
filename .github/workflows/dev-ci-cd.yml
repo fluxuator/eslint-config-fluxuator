@@ -50,7 +50,7 @@ jobs:
     needs: ['build']
 
     steps:
-      - uses: fastify/github-action-merge-dependabot@v2.7.0
+      - uses: fastify/github-action-merge-dependabot@v2.7.1
         with:
           target: patch
           github-token: ${{ secrets.GITHUB_TOKEN }}
