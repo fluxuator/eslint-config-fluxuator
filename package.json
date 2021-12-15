@@ -28,7 +28,7 @@
     "postpublish": "pinst --enable"
   },
   "dependencies": {
-    "confusing-browser-globals": "^1.0.10"
+    "confusing-browser-globals": "^1.0.11"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
