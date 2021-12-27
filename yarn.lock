@@ -239,14 +239,14 @@
     "@commitlint/types" "^16.0.0"
     ajv "^6.12.6"
 
-"@commitlint/cz-commitlint@^15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-15.0.0.tgz#35ef65981b0febfbc16134c3d46e618e3b0697bb"
-  integrity sha512-e2hdYijPOMVB4JNRHRRhD++Mh9V64AgRJLpyApzJQchNGuWS7ssfTLkmrZWI7omHin7ppgBXuiB7AnI4450Kfg==
+"@commitlint/cz-commitlint@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-16.0.0.tgz#819ff3d548333531c1e49c8f1ecf849dd347f385"
+  integrity sha512-kUYfM4OyXtZubD3wrCbfpkUbFSudHTaHkY4jxt00RofsaKWtKDVrOdhjGqdQzp06KItyRU+1BuNoW/SJ3t+ytQ==
   dependencies:
-    "@commitlint/ensure" "^15.0.0"
-    "@commitlint/load" "^15.0.0"
-    "@commitlint/types" "^15.0.0"
+    "@commitlint/ensure" "^16.0.0"
+    "@commitlint/load" "^16.0.0"
+    "@commitlint/types" "^16.0.0"
     chalk "^4.1.0"
     lodash "^4.17.21"
     word-wrap "^1.2.3"
