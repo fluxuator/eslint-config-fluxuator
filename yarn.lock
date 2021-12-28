@@ -832,12 +832,12 @@ commitizen@^4.0.3, commitizen@^4.2.4:
     strip-bom "4.0.0"
     strip-json-comments "3.0.1"
 
-commitlint@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/commitlint/-/commitlint-16.0.0.tgz#28a1331ebffaeae1646613dc54667c41b2f51865"
-  integrity sha512-jO5lDx/Vd/PVokZVlyDfyELst5qwZtjsoidj/6/Y4eR9yzIofemyhnuigxWJKtDfCgkpu43yWaeHi+Rs0fei0Q==
+commitlint@^16.0.1:
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/commitlint/-/commitlint-16.0.1.tgz#d6b30711e426ef1810c84f6df8f65ec11b561dde"
+  integrity sha512-LShxd2o07z7uW6Z5oEIHChODlvBKO9JtNgWjxbaqLgL/SFLy8gRoWcwJrgOk/F7WA564TYaDWEBAELyVEmpSzw==
   dependencies:
-    "@commitlint/cli" "^16.0.0"
+    "@commitlint/cli" "^16.0.1"
     "@commitlint/types" "^16.0.0"
 
 compare-func@^2.0.0:
