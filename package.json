@@ -38,7 +38,7 @@
     "@commitlint/cz-commitlint": "^16.2.1",
     "@typescript-eslint/parser": "^5.11.0",
     "commitizen": "^4.2.4",
-    "commitlint": "^16.1.0",
+    "commitlint": "^16.2.1",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
