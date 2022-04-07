@@ -61,3 +61,5 @@ jobs:
           target: patch
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ github.event.inputs.pr-number }}
+          approve-only: true
+          exclude: 'react,fastify'
