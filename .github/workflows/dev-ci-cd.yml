@@ -2,6 +2,10 @@ name: Development CI/CD
 
 on:
   workflow_dispatch:
+    inputs:
+      pr-number:
+        description: 'Enter PR number'
+        required: true
   pull_request:
   push:
     branches: ['!main']
@@ -45,7 +49,7 @@ jobs:
   dependabot-merge:
     name: Dependabot auto-merge
     runs-on: ubuntu-latest
-    needs: ['build']
+    needs: build
 
     permissions:
       pull-requests: write
@@ -56,3 +60,4 @@ jobs:
         with:
           target: patch
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          pr-number: ${{ github.event.inputs.pr-number }}
