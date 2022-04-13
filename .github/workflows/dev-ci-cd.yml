@@ -52,7 +52,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: fastify/github-action-merge-dependabot@v3.1.1
+      - uses: fastify/github-action-merge-dependabot@v3.1.2
         with:
           target: patch
           github-token: ${{ secrets.GITHUB_TOKEN }}
