@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
-    "@babel/eslint-parser": "^7.18.2",
+    "@babel/eslint-parser": "^7.18.9",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@commitlint/cz-commitlint": "^17.0.3",
@@ -56,7 +56,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.18.6",
-    "@babel/eslint-parser": "^7.18.2",
+    "@babel/eslint-parser": "^7.18.9",
     "@babel/preset-react": "^7.14.5",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.29.0",
