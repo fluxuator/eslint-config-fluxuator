@@ -10,12 +10,11 @@ opinionated.
 1. Install this package, ESLint and the necessary plugins
 
 ```sh
-yarn add -D eslint-config-fluxuator eslint@^8.0.0 @babel/eslint-parser@^7.0.0 @babel/preset-react@^7.0.0 \
-            eslint-plugin-import@^2.0.0 eslint-plugin-jsx-a11y@^6.0.0 eslint-plugin-react@^7.0.0 \
-            eslint-plugin-react-hooks@^4.0.0
+yarn add -D eslint-config-fluxuator @babel/core@^7.0.0 @babel/eslint-parser@^7.0.0 @babel/preset-react@^7.0.0 \
+            eslint@^8.0.0 eslint-plugin-jsx-a11y@^6.0.0 eslint-plugin-react@^7.0.0 eslint-plugin-react-hooks@^4.0.0
 ```
 
-for typescript projects install additional plugins
+for typescript projects install additional dependencies
 
 ```shell
 yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^5.0.0 @typescript-eslint/parser@^5.0.0
@@ -41,28 +40,27 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^5.0.0 @typescrip
 }
 ```
 
-3. If you want to add more recommended rules, you can do it by adding the `fluxuator/jest` to the extends array in your
-   ESLint config.
-
-```json
-{
-  "extends": ["fluxuator", "fluxuator/recommended"]
-}
-```
-
-4. If you are using the new JSX transform from React 17, add "plugin:react/jsx-runtime" to "extends" to disable the relevant rules.
+4. If you are using the new JSX transform from React 17, add "fluxuator/jsx-runtime" to "extends" to disable
+   the relevant rules.
 
 5. Add a script to you package.json to check your project with Eslint.
 
 ```json
 {
-  ...
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "yarn lint --fix",
-    ...
-  },
-  ...
+    "lint:fix": "yarn lint --fix"
+  }
+}
+```
+
+### React App (Recommended)
+
+You can also enable all recommended rules for your React App with only one config that combines all recommended rules
+
+```json
+{
+  "extends": ["fluxuator/react-recommended"]
 }
 ```
 
@@ -71,7 +69,7 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^5.0.0 @typescrip
 1. Install this package, ESLint and the necessary plugins
 
 ```sh
-yarn add -D eslint-config-fluxuator eslint@^8.0.0 eslint-plugin-import@^2.0.0
+yarn add -D eslint-config-fluxuator eslint@^8.0.0
 ```
 
 2. Create a file named `.eslintrc` with following contents in the root folder of your project:
@@ -94,12 +92,13 @@ yarn add -D eslint-config-fluxuator eslint@^8.0.0 eslint-plugin-import@^2.0.0
 }
 ```
 
-3. If you want to add more recommended rules, you can do it by adding the `fluxuator/jest` to the extends array in your
-   ESLint config.
+### NodeJS App (Recommended)
+
+You can also enable all recommended rules for your NodeJS App with only one config that combines all recommended rules
 
 ```json
 {
-  "extends": ["fluxuator/node", "fluxuator/node-recommended"]
+  "extends": ["fluxuator/node-recommended"]
 }
 ```
 
@@ -108,12 +107,13 @@ That's it!
 ## Jest rules
 
 This config also ships with optional Jest rules for ESLint (based
-on [`eslint-plugin-jest`](https://github.com/jest-community/eslint-plugin-jest)).
+on [`eslint-plugin-jest`](https://github.com/jest-community/eslint-plugin-jest))
+and [`eslint-plugin-testing-library`](https://github.com/testing-library/eslint-plugin-testing-library)).
 
-1. Install the ESLint plugin for Jest (if you don't already have it installed).
+1. Install the ESLint plugin for Jest and Testing Library (if you don't already have them installed).
 
 ```sh
-yarn add -D jest eslint-plugin-jest@^24.0.0 eslint-plugin-testing-library@^3.9.0
+yarn add -D jest eslint-plugin-jest eslint-plugin-testing-library
 ```
 
 2. Enable these rules by adding the Jest config to the `extends` array in your ESLint config.
@@ -121,6 +121,40 @@ yarn add -D jest eslint-plugin-jest@^24.0.0 eslint-plugin-testing-library@^3.9.0
 ```json
 {
   "extends": ["fluxuator", "fluxuator/jest"]
+}
+```
+
+## Prettier rules
+
+This config also ships with optional Prettier rules for ESLint.
+
+1. Install the Prettier tool (if you don't already have them installed).
+
+```sh
+yarn add -D prettier@^2.0.0 eslint-config-prettier eslint-plugin-prettier
+```
+
+2. Enable these rules by adding the Prettier config to the `extends` array in your ESLint config. Make sure to put it
+   last, so it gets the chance to override other configs.
+
+```json
+{
+  "extends": ["fluxuator", "fluxuator/prettier"]
+}
+```
+
+## Accessibility Checks
+
+Some basic rules from the [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin are
+activated:
+
+If you want to enable even more accessibility rules, you can create an `.eslintrc` file in the root of your project with
+this content:
+
+```json
+{
+  "extends": ["fluxuator", "plugin:jsx-a11y/recommended"],
+  "plugins": ["jsx-a11y"]
 }
 ```
 
@@ -140,20 +174,5 @@ yarn add -D eslint-plugin-mdx@^1.16.0
 ```json
 {
   "extends": ["fluxuator", "fluxuator/jest", "fluxuator/mdx"]
-}
-```
-
-## Accessibility Checks
-
-Some basic rules from the [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin are
-activated:
-
-If you want to enable even more accessibility rules, you can create an `.eslintrc` file in the root of your project with
-this content:
-
-```json
-{
-  "extends": ["fluxuator", "plugin:jsx-a11y/recommended"],
-  "plugins": ["jsx-a11y"]
 }
 ```

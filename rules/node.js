@@ -14,6 +14,7 @@ module.exports = {
   'new-parens': 'warn',
   'no-array-constructor': 'warn',
   'no-caller': 'warn',
+  'no-console': 'error',
   'no-cond-assign': ['warn', 'except-parens'],
   'no-const-assign': 'warn',
   'no-control-regex': 'warn',
@@ -29,7 +30,7 @@ module.exports = {
   'no-extend-native': 'warn',
   'no-extra-bind': 'warn',
   'no-extra-label': 'warn',
-  'no-fallthrough': 'warn',
+  'no-fallthrough': 'off',
   'no-func-assign': 'warn',
   'no-implied-eval': 'warn',
   'no-invalid-regexp': 'warn',
@@ -87,7 +88,12 @@ module.exports = {
 
   // Disallow Unused Variables
   // https://eslint.org/docs/rules/no-unused-vars#options
-  'no-unused-vars': [
+  'no-unused-vars': 'off', // disabled in favor of "unused-imports/no-unused-vars"
+
+  // Find and remove unused es6 module imports.
+  // https://github.com/sweepline/eslint-plugin-unused-imports
+  'unused-imports/no-unused-imports': 'warn',
+  'unused-imports/no-unused-vars': [
     'warn',
     {
       vars: 'all',
@@ -96,6 +102,7 @@ module.exports = {
       varsIgnorePattern: '^jsx$',
     },
   ],
+
   'no-use-before-define': [
     'warn',
     {
@@ -125,7 +132,11 @@ module.exports = {
   'no-whitespace-before-property': 'warn',
   'require-yield': 'warn',
   'rest-spread-spacing': ['warn', 'never'],
-  strict: ['warn', 'never'],
+
+  // require or disallow strict mode directives (strict)
+  // https://eslint.org/docs/rules/strict
+  strict: 'warn',
+
   'unicode-bom': ['warn', 'never'],
   'use-isnan': 'warn',
   'valid-typeof': 'warn',
@@ -148,8 +159,146 @@ module.exports = {
 
   // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
   'import/first': 'error',
+  'import/newline-after-import': 'error',
   'import/no-amd': 'error',
-  'import/no-anonymous-default-export': 'warn',
+
+  // Reports if a module's default export is unnamed.
+  // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-anonymous-default-export.md
+  'import/no-anonymous-default-export': [
+    'warn',
+    {
+      allowArray: true,
+      allowArrowFunction: true,
+      allowAnonymousClass: false,
+      allowAnonymousFunction: true,
+      allowCallExpression: true,
+      allowLiteral: false,
+      allowObject: true,
+    },
+  ],
+
   'import/no-duplicates': 'warn',
   'import/no-webpack-loader-syntax': 'error',
+
+  semi: ['warn', 'always'],
+
+  indent: ['warn', 2, { SwitchCase: 1 }],
+
+  // Enforce consistent linebreak style for operators
+  // https://eslint.org/docs/rules/operator-linebreak
+  'operator-linebreak': ['warn', 'before'],
+
+  // Require Following Curly Brace Conventions
+  // https://eslint.org/docs/rules/curly
+  curly: 'warn',
+
+  // Require Brace Style
+  // https://eslint.org/docs/rules/brace-style
+  'brace-style': 'warn',
+
+  'max-len': ['warn', 120, 2],
+
+  'no-multiple-empty-lines': ['warn', { max: 1, maxEOF: 1 }],
+
+  'arrow-body-style': ['warn', 'as-needed'],
+
+  'arrow-parens': ['warn', 'as-needed', { requireForBlockBody: true }],
+
+  quotes: ['warn', 'single'],
+
+  'no-debugger': 'error',
+
+  'function-paren-newline': ['warn', 'consistent'],
+
+  'object-curly-newline': ['warn', { consistent: true }],
+
+  // Require or disallow trailing commas
+  // https://eslint.org/docs/rules/comma-dangle
+  'comma-dangle': [
+    'warn',
+    {
+      arrays: 'always-multiline',
+      objects: 'always-multiline',
+      imports: 'always-multiline',
+      exports: 'always-multiline',
+      functions: 'never',
+    },
+  ],
+  'padded-blocks': ['warn', 'never'],
+
+  'prefer-template': 'warn',
+
+  'template-curly-spacing': ['warn', 'never'],
+
+  'no-param-reassign': ['warn', { props: false }],
+
+  // Prevents unnecessary path segments in import and require statements.
+  // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-useless-path-segments.md
+  'import/no-useless-path-segments': ['warn', { noUselessIndex: true }],
+
+  // Require quotes around object literal property names
+  // https://eslint.org/docs/rules/quote-props
+  'quote-props': ['warn', 'as-needed'],
+
+  // Require Object Literal Shorthand Syntax
+  // https://eslint.org/docs/rules/object-shorthand
+  'object-shorthand': 'warn',
+
+  // Suggest using const
+  // https://eslint.org/docs/rules/prefer-const
+  'prefer-const': 'warn',
+
+  // Enforce consistent spacing inside braces
+  // https://eslint.org/docs/rules/object-curly-spacing
+  'object-curly-spacing': ['warn', 'always'],
+
+  // Disallow or enforce spaces inside of brackets
+  // https://eslint.org/docs/rules/array-bracket-spacing
+  'array-bracket-spacing': ['warn', 'never'],
+
+  // Disallow or enforce spaces inside of computed properties
+  // https://eslint.org/docs/rules/computed-property-spacing
+  'computed-property-spacing': ['warn', 'never'],
+
+  // Require or disallow padding lines between statements
+  // https://eslint.org/docs/rules/padding-line-between-statements
+  'padding-line-between-statements': [
+    'warn',
+    { blankLine: 'always', prev: '*', next: 'return' },
+
+    { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+    { blankLine: 'always', prev: '*', next: ['const', 'let', 'var'] },
+    { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
+
+    { blankLine: 'always', prev: 'directive', next: '*' },
+    { blankLine: 'any', prev: 'directive', next: 'directive' },
+
+    { blankLine: 'always', prev: ['case', 'default'], next: '*' },
+    { blankLine: 'never', prev: 'case', next: ['case', 'return'] },
+
+    { blankLine: 'always', prev: 'import', next: '*' },
+    { blankLine: 'always', prev: '*', next: 'export' },
+    { blankLine: 'any', prev: ['import', 'export'], next: ['import', 'export'] },
+  ],
+
+  'import/order': [
+    'warn',
+    {
+      groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+      pathGroups: [
+        { pattern: '~', group: 'internal' },
+        { pattern: '~/**', group: 'internal' },
+      ],
+    },
+  ],
+
+  'sort-imports': [
+    'warn',
+    {
+      ignoreCase: false,
+      ignoreDeclarationSort: true,
+      ignoreMemberSort: false,
+      memberSyntaxSortOrder: ['none', 'single', 'multiple', 'all'],
+    },
+  ],
 }

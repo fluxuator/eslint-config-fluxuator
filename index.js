@@ -1,8 +1,5 @@
 'use strict'
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-process.env.BABEL_ENV = process.env.NODE_ENV
-
 /**
  * Inspired by https://github.com/airbnb/javascript
  * and https://github.com/facebook/create-react-app but less opinionated.
@@ -15,7 +12,7 @@ module.exports = {
 
   parser: '@babel/eslint-parser',
 
-  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks'],
+  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'unused-imports'],
 
   env: {
     browser: true,
@@ -39,12 +36,15 @@ module.exports = {
     },
   },
 
+  rules: Object.assign({}, require('./rules/node'), require('./rules/react'), require('./rules/a11y')),
+
   overrides: [
     {
       files: ['**/*.ts?(x)'],
       parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
       parserOptions: {
-        ecmaVersion: 2018,
+        ecmaVersion: 2021,
         sourceType: 'module',
         ecmaFeatures: {
           jsx: true,
@@ -52,12 +52,15 @@ module.exports = {
         // typescript-eslint specific options
         warnOnUnsupportedTypeScriptVersion: true,
       },
-      plugins: ['@typescript-eslint'],
       // If adding a typescript-eslint version of an existing ESLint rule,
       // make sure to disable the ESLint rule here.
       rules: require('./rules/typescript'),
     },
+    {
+      files: ['**/*.d.ts'],
+      rules: {
+        'unused-imports/no-unused-vars': 'off',
+      },
+    },
   ],
-
-  rules: Object.assign(require('./rules/node'), require('./rules/react'), require('./rules/a11y')),
 }

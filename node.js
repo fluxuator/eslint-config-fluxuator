@@ -1,11 +1,9 @@
 'use strict'
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-
 module.exports = {
   root: true,
 
-  plugins: ['import'],
+  plugins: ['import', 'unused-imports'],
 
   env: {
     browser: true,
@@ -20,25 +18,22 @@ module.exports = {
     sourceType: 'module',
   },
 
+  rules: require('./rules/node'),
+
   overrides: [
     {
       files: ['**/*.ts'],
       parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
       parserOptions: {
-        ecmaVersion: 2018,
+        ecmaVersion: 2021,
         sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
         // typescript-eslint specific options
         warnOnUnsupportedTypeScriptVersion: true,
       },
-      plugins: ['@typescript-eslint'],
       // If adding a typescript-eslint version of an existing ESLint rule,
       // make sure to disable the ESLint rule here.
       rules: require('./rules/typescript'),
     },
   ],
-
-  rules: require('./rules/node'),
 }

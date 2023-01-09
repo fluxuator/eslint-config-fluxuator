@@ -2,18 +2,34 @@
   "root": true,
   "extends": ["eslint:recommended", "prettier"],
   "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "env": {
+    "es2021": true,
+    "node": true
+  },
   "rules": {
     "prettier/prettier": "warn",
     "quotes": ["warn", "single"],
     "quote-props": ["warn", "as-needed"],
-    "no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 1 }],
-    "comma-dangle": ["warn", "always-multiline"]
-  },
-  "parserOptions": {
-    "ecmaVersion": 2017
-  },
-  "env": {
-    "node": true,
-    "es6": true
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        "max": 1,
+        "maxEOF": 1
+      }
+    ],
+    "comma-dangle": [
+      "warn",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ]
   }
 }

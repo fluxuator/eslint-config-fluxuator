@@ -21,14 +21,15 @@
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx,.mdx --cache --cache-location=.cache/eslint-cache",
     "lint": "yarn eslint .",
     "prettier": "prettier --ignore-unknown",
-    "format:check": "yarn prettier --check .",
-    "format:fix": "yarn prettier --write .",
     "prepare": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
   },
   "dependencies": {
-    "confusing-browser-globals": "^1.0.11"
+    "@rushstack/eslint-patch": "^1.1.0",
+    "confusing-browser-globals": "^1.0.11",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-unused-imports": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -50,10 +51,6 @@
     "prettier": "^2.8.1",
     "typescript": ">=3.3.1 <4.10.0"
   },
-  "resolutions": {
-    "ansi-regex": "^5.0.1",
-    "minimist": "^1.2.6"
-  },
   "peerDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/eslint-parser": "^7.19.1",
@@ -61,13 +58,15 @@
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.48.0",
     "eslint": "^8.0.0",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": ">=25",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-mdx": "^1.16.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^5.0.0",
+    "prettier": "^2.7.1",
     "typescript": ">=3.3.1 <4.10.0"
   },
   "peerDependenciesMeta": {
@@ -80,12 +79,6 @@
     "@babel/preset-react": {
       "optional": true
     },
-    "eslint-plugin-jest": {
-      "optional": true
-    },
-    "eslint-plugin-testing-library": {
-      "optional": true
-    },
     "@typescript-eslint/eslint-plugin": {
       "optional": true
     },
@@ -95,13 +88,28 @@
     "eslint-plugin-mdx": {
       "optional": true
     },
+    "eslint-config-prettier": {
+      "optional": true
+    },
+    "eslint-plugin-jest": {
+      "optional": true
+    },
     "eslint-plugin-jsx-a11y": {
+      "optional": true
+    },
+    "eslint-plugin-prettier": {
       "optional": true
     },
     "eslint-plugin-react": {
       "optional": true
     },
     "eslint-plugin-react-hooks": {
+      "optional": true
+    },
+    "eslint-plugin-testing-library": {
+      "optional": true
+    },
+    "prettier": {
       "optional": true
     },
     "typescript": {
@@ -129,7 +137,7 @@
             },
             {
               "type": "refactor",
-              "release": "patch"
+              "release": "minor"
             },
             {
               "type": "style",
