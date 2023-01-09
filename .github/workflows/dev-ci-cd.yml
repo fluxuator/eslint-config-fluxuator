@@ -54,4 +54,6 @@ jobs:
     steps:
       - uses: fastify/github-action-merge-dependabot@v3
         with:
+          approve-only: true
+          target: patch
           github-token: ${{ secrets.GITHUB_TOKEN }}
