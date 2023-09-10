@@ -1,6 +1,4 @@
-'use strict'
-
-const restrictedGlobals = require('confusing-browser-globals')
+const restrictedGlobals = require('confusing-browser-globals');
 
 /**
  * This file contains the basic ESLint rules
@@ -99,7 +97,8 @@ module.exports = {
       vars: 'all',
       args: 'none',
       ignoreRestSiblings: true,
-      varsIgnorePattern: '^jsx$',
+      varsIgnorePattern: '^(jsx$|_)',
+      argsIgnorePattern: '^_',
     },
   ],
 
@@ -177,7 +176,10 @@ module.exports = {
     },
   ],
 
-  'import/no-duplicates': 'warn',
+  // Reports if a resolved path is imported more than once.
+  // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-duplicates.md#inline-type-imports
+  'import/no-duplicates': ['warn', { 'prefer-inline': true }],
+
   'import/no-webpack-loader-syntax': 'error',
 
   semi: ['warn', 'always'],
@@ -280,25 +282,4 @@ module.exports = {
     { blankLine: 'always', prev: '*', next: 'export' },
     { blankLine: 'any', prev: ['import', 'export'], next: ['import', 'export'] },
   ],
-
-  'import/order': [
-    'warn',
-    {
-      groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-      pathGroups: [
-        { pattern: '~', group: 'internal' },
-        { pattern: '~/**', group: 'internal' },
-      ],
-    },
-  ],
-
-  'sort-imports': [
-    'warn',
-    {
-      ignoreCase: false,
-      ignoreDeclarationSort: true,
-      ignoreMemberSort: false,
-      memberSyntaxSortOrder: ['none', 'single', 'multiple', 'all'],
-    },
-  ],
-}
+};

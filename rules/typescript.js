@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * This file contains the basic ESLint rules
  */
@@ -85,17 +83,19 @@ module.exports = {
         regex: 'aria-[a-z]+',
         match: true,
       },
+      leadingUnderscore: 'allowSingleOrDouble',
     },
     {
       selector: ['classProperty', 'classMethod'],
       format: ['camelCase'],
       modifiers: ['private'],
-      leadingUnderscore: 'allow',
+      leadingUnderscore: 'allowSingleOrDouble',
     },
     {
       selector: 'memberLike',
       format: ['camelCase', 'PascalCase'],
       modifiers: ['private'],
+      leadingUnderscore: 'allowSingleOrDouble',
     },
     {
       selector: 'objectLiteralProperty',
@@ -165,6 +165,15 @@ module.exports = {
     },
   ],
 
+  // Enforce consistent usage of type imports
+  // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/consistent-type-imports.md
+  '@typescript-eslint/consistent-type-imports': [
+    'warn',
+    {
+      prefer: 'no-type-imports',
+    },
+  ],
+
   // Require or disallow semicolons instead of ASI
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md
   // '@typescript-eslint/semi': ['warn', 'never'],
@@ -177,4 +186,4 @@ module.exports = {
   // Forbid certain propTypes
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
   'react/forbid-prop-types': 'off',
-}
+};

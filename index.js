@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * Inspired by https://github.com/airbnb/javascript
  * and https://github.com/facebook/create-react-app but less opinionated.
@@ -63,4 +61,4 @@ module.exports = {
       },
     },
   ],
-}
+};

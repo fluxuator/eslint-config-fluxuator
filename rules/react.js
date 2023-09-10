@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * This file contains the basic ESLint rules
  */
@@ -386,4 +384,4 @@ module.exports = {
   // Enforce defaultProps declarations alphabetical sorting
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-default-props.md
   'react/jsx-sort-default-props': 'off',
-}
+};

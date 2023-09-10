@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = {
   overrides: [
     {
@@ -7,4 +5,4 @@ module.exports = {
       extends: 'plugin:mdx/recommended',
     },
   ],
-}
+};

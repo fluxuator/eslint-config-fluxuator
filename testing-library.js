@@ -5,7 +5,7 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 // This is why we prefer to use "WARNING" level for potential errors,
 // and we try not to use "ERROR" level at all.
 module.exports = {
-  plugins: ['jest'],
+  plugins: ['testing-library'],
   overrides: [
     {
       files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
@@ -13,7 +13,7 @@ module.exports = {
         'jest/globals': true,
       },
       // A subset of the recommended rules:
-      rules: require('./rules/jest'),
+      rules: require('./rules/testing-library'),
     },
   ],
 };

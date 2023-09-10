@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = {
   root: true,
 
@@ -36,4 +34,4 @@ module.exports = {
       rules: require('./rules/typescript'),
     },
   ],
-}
+};
