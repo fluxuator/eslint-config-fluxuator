@@ -5,7 +5,7 @@ module.exports = {
     'prettier/prettier': [
       'warn',
       {
-        semi: true,
+        semi: false,
         printWidth: 120,
         singleQuote: true,
         trailingComma: 'es5',
@@ -23,4 +23,4 @@ module.exports = {
     // Remove the following line in case of mentioned in README problems
     'arrow-body-style': ['warn', 'as-needed'],
   },
-};
+}
