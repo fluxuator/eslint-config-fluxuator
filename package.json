@@ -39,7 +39,7 @@
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "@commitlint/cz-commitlint": "^17.4.2",
-    "@typescript-eslint/parser": "^5.59.11",
+    "@typescript-eslint/parser": "^6.6.0",
     "commitizen": "^4.2.6",
     "commitlint": "^17.7.1",
     "eslint": "^8.42.0",
