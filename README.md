@@ -14,14 +14,12 @@ NOTE: You can also create it in your home directory to enable it globally for al
 1. Install this package, ESLint and the necessary dependencies
 
 ```sh
-yarn add -D eslint-config-fluxuator @babel/core@^7.0.0 @babel/eslint-parser@^7.0.0 @babel/preset-react@^7.0.0 \
-            eslint@^8.0.0 eslint-plugin-jsx-a11y@^6.0.0 eslint-plugin-react@^7.0.0 eslint-plugin-react-hooks@^4.0.0
-```
-
-for typescript projects install additional dependencies
-
-```shell
-yarn add -D typescript@^5 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6
+yarn add -D eslint-config-fluxuator \
+              @babel/core@^7.0.0 @babel/eslint-parser@^7.0.0 @babel/preset-react@^7.0.0 \
+            eslint@^8.0.0 \
+              eslint-plugin-react@^7.0.0 eslint-plugin-react-hooks@^4.0.0 \
+            typescript@^5 \
+              @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6
 ```
 
 2. Create a file named `.eslintrc` with following contents in the root folder of your project:
@@ -52,8 +50,8 @@ yarn add -D typescript@^5 @typescript-eslint/eslint-plugin@^6 @typescript-eslint
 ```json
 {
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "yarn lint --fix"
+    "lint": "eslint '**/*.{ts,tsx}' --report-unused-disable-directives",
+    "lint:fix": "yarn lint --fix --max-warnings 0"
   }
 }
 ```
@@ -61,27 +59,35 @@ yarn add -D typescript@^5 @typescript-eslint/eslint-plugin@^6 @typescript-eslint
 ### React App (Recommended)
 
 You can also enable all recommended rules for your React App with only one config that combines all recommended rules
+including Prettier, but without testing libraries (should be installed separately)
 
-```json
+```json5
 {
-  "extends": ["fluxuator/react-recommended"]
+  extends: ['fluxuator/react-recommended'],
 }
 ```
 
-> NOTE: It is also includes Jest, Testing Library, Prettier rules
+```json5
+{
+  extends: [
+    'fluxuator/react-recommended',
+    // "fluxuator/vitest-recommended"
+    // "fluxuator/jest-recommended"
+  ],
+}
+```
+
+_NOTE: Requires [Prettier](#prettier) to be installed additionally_
 
 ### NodeJS App
 
 1. Install this package, ESLint and the necessary plugins
 
 ```sh
-yarn add -D eslint-config-fluxuator eslint@^9.0.0
-```
-
-for typescript projects install additional dependencies
-
-```shell
-yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^6.0.0 @typescript-eslint/parser@^6.0.0
+yarn add -D eslint-config-fluxuator \
+            eslint@^8.0.0 \
+            typescript@^5 \
+              @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6
 ```
 
 2. Create a file named `.eslintrc` with following contents in the root folder of your project:
@@ -107,29 +113,29 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^6.0.0 @typescrip
 ### NodeJS App (Recommended)
 
 You can also enable all recommended rules for your NodeJS App with only one config that combines all recommended rules
+including Prettier, but without testing libraries (should be installed separately)
 
 ```json
 {
-  "extends": ["fluxuator/node-recommended"]
+  "extends": ["fluxuator/node-recommended", "fluxuator/jest"]
 }
 ```
 
-> NOTE: It is also includes Jest, Prettier rules
+_NOTE: Requires [Prettier](#prettier) to be installed additionally_
 
 That's it!
 
 ## Extensions
 
-### Jest rules
+### Jest
 
 This config also ships with optional Jest rules for ESLint (based
 on [`eslint-plugin-jest`](https://github.com/jest-community/eslint-plugin-jest))
-and [`eslint-plugin-testing-library`](https://github.com/testing-library/eslint-plugin-testing-library)).
 
 1. Install the ESLint plugin for Jest and Testing Library (if you don't already have them installed).
 
 ```sh
-yarn add -D jest eslint-plugin-jest
+yarn add -D jest eslint-plugin-jest eslint-plugin-jest-formatting
 ```
 
 2. Enable these rules by adding the Jest config to the `extends` array in your ESLint config.
@@ -140,8 +146,30 @@ yarn add -D jest eslint-plugin-jest
 }
 ```
 
-If you want to extend it with [`eslint-plugin-testing-library`](https://github.com/testing-library/eslint-plugin-testing-library)) rules,
-then add it also into your app.
+### Vitest
+
+In case you are using ViteJS as app builder, it is recommended to use Vitest instead of Jest in your app.
+This config also ships with optional Vitest rules for ESLint (based
+on [`eslint-plugin-vitest`](https://github.com/veritem/eslint-plugin-vitest))
+
+1. Install the ESLint plugin for Vitest
+
+```sh
+yarn add -D jest eslint-plugin-vites eslint-plugin-jest-formatting
+```
+
+2. Enable these rules by adding the Jest config to the `extends` array in your ESLint config.
+
+```json
+{
+  "extends": ["fluxuator", "fluxuator/vitest"]
+}
+```
+
+### Testing Library
+
+You can also charge your ESLint with additional power
+of [`eslint-plugin-testing-library`](https://github.com/testing-library/eslint-plugin-testing-library)) rules.
 
 ```sh
 yarn add -D  eslint-plugin-testing-library
@@ -151,11 +179,11 @@ and enable additional rules
 
 ```json
 {
-  "extends": ["fluxuator", "fluxuator/jest", "fluxuator/testing-library"]
+  "extends": ["fluxuator", "fluxuator/vitest", "fluxuator/testing-library"]
 }
 ```
 
-### Prettier rules
+### Prettier
 
 This config also ships with optional Prettier rules for ESLint.
 
@@ -174,7 +202,7 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 }
 ```
 
-## Accessibility Checks
+### Accessibility Checks
 
 Some basic rules from the [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin are
 activated:
@@ -184,8 +212,7 @@ this content:
 
 ```json
 {
-  "extends": ["fluxuator", "plugin:jsx-a11y/recommended"],
-  "plugins": ["jsx-a11y"]
+  "extends": ["fluxuator", "fluxuator/a11y"]
 }
 ```
 

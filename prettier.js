@@ -22,5 +22,7 @@ module.exports = {
     // More: https://github.com/prettier/eslint-config-prettier/blob/2c842675e55b91aecaef6f997d234ebf2d220ffb/README.md#arrow-body-style-and-prefer-arrow-callback
     // Remove the following line in case of mentioned in README problems
     'arrow-body-style': ['warn', 'as-needed'],
+    // This rule is more advanced than Prettier one and should be added after `prettier/prettier`
+    quotes: ['warn', 'single', { avoidEscape: true }],
   },
 }

@@ -6,4 +6,4 @@ module.exports = {
     'footer-max-line-length': [1, 'always', Infinity],
     'subject-case': [1, 'never'],
   },
-};
+}

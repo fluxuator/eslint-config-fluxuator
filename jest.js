@@ -1,19 +1,13 @@
-// Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
-require('@rushstack/eslint-patch/modern-module-resolution');
-
-// We use eslint-loader so even warnings are very visible.
-// This is why we prefer to use "WARNING" level for potential errors,
-// and we try not to use "ERROR" level at all.
 module.exports = {
-  plugins: ['jest'],
   overrides: [
     {
       files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
+      plugins: ['jest', 'jest-formatting'],
+      extends: ['plugin:jest/recommended', 'plugin:jest-formatting/recommended'],
       env: {
         'jest/globals': true,
       },
-      // A subset of the recommended rules:
-      rules: require('./rules/jest'),
+      rules: require('./rules/jest', './rules/jest-formatting'),
     },
   ],
-};
+}
