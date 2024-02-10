@@ -10,7 +10,7 @@ module.exports = {
 
   parser: '@babel/eslint-parser',
 
-  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'unused-imports'],
+  plugins: ['import', 'react', 'react-hooks', 'unused-imports'],
 
   env: {
     browser: true,
@@ -34,7 +34,7 @@ module.exports = {
     },
   },
 
-  rules: Object.assign({}, require('./rules/node'), require('./rules/react'), require('./rules/a11y')),
+  rules: Object.assign({}, require('./rules/node'), require('./rules/react')),
 
   overrides: [
     {
@@ -61,4 +61,4 @@ module.exports = {
       },
     },
   ],
-};
+}

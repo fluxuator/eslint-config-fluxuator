@@ -1,5 +1,7 @@
 /**
- * This file contains the basic ESLint rules
+ * We use eslint-loader so even warnings are very visible.
+ * This is why we prefer to use "WARNING" level for potential warns,
+ * and we try not to use "warn" level at all.
  */
 module.exports = {
   // https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules
@@ -25,4 +27,4 @@ module.exports = {
   'jsx-a11y/role-has-required-aria-props': 'warn',
   'jsx-a11y/role-supports-aria-props': 'warn',
   'jsx-a11y/scope': 'warn',
-};
+}

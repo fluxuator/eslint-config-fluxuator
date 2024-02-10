@@ -49,7 +49,7 @@ module.exports = {
   '@typescript-eslint/ban-ts-comment': 'warn',
 
   // Enforces naming conventions for everything across a codebase (naming-convention)
-  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
+  // https://typescript-eslint.io/rules/naming-convention/
   '@typescript-eslint/naming-convention': [
     'warn',
     {
@@ -84,6 +84,10 @@ module.exports = {
         match: true,
       },
       leadingUnderscore: 'allowSingleOrDouble',
+    },
+    {
+      selector: 'import',
+      format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
     },
     {
       selector: ['classProperty', 'classMethod'],
@@ -186,4 +190,4 @@ module.exports = {
   // Forbid certain propTypes
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
   'react/forbid-prop-types': 'off',
-};
+}
