@@ -1,4 +1,4 @@
 {
-  "*.js": "yarn eslint --max-warnings=0 --fix",
-  "!*.js": "yarn prettier --write"
+  "*.js": "pnpm eslint --max-warnings=0 --fix --report-unused-disable-directives",
+  "!*.js": "pnpm prettier --write"
 }

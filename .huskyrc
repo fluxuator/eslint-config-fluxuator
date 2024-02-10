@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-commit": "pnpm lint --max-warnings=0"
+    "pre-commit": "pnpm lint --max-warnings=0 --report-unused-disable-directives"
   }
 }

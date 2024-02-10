@@ -4,5 +4,5 @@ commitlint.config.js
 !rules
 !README.md
 !package.json
-!yarn.lock
+!pnpm-lock.yaml
 !LICENSE
