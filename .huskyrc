@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-commit": "yarn lint --max-warnings=0"
+    "pre-commit": "pnpm lint --max-warnings=0"
   }
 }

@@ -19,10 +19,10 @@ help: ## Show this help.
 # CLI Command definitions
 #
 lint: ## Runs eslint over the project
-	@yarn lint
+	@pnpm lint
 .PHONY: lint
 
 lint-staged: ## Runs eslint for staged files
-	@yarn lint-staged
+	@pnpm lint-staged
 .PHONY: lint
 
