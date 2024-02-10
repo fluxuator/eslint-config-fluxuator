@@ -58,7 +58,8 @@
   },
   "pnpm": {
     "overrides": {
-      "normalize-package-data@2.5.0>semver": "^5.7.2"
+      "normalize-package-data@2.5.0>semver": "^5.7.2",
+      "remark-parse@8.0.3>trim": "^0.0.3"
     }
   },
   "peerDependencies": {
