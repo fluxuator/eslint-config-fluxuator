@@ -13,8 +13,8 @@ dependencies:
     specifier: ^7.14.5
     version: 7.23.3(@babel/core@7.23.9)
   '@rushstack/eslint-patch':
-    specifier: ^1.10.1
-    version: 1.10.1
+    specifier: ^1.10.3
+    version: 1.10.3
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.0.0 || ^7.0.0
     version: 6.21.0(@typescript-eslint/parser@7.4.0)(eslint@8.56.0)(typescript@5.3.3)
@@ -1058,8 +1058,8 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dev: true
 
-  /@rushstack/eslint-patch@1.10.1:
-    resolution: {integrity: sha512-S3Kq8e7LqxkA9s7HKLqXGTGck1uwis5vAXan3FnU5yw1Ec5hsSGnq4s/UCaSqABPOnOTg7zASLyst7+ohgWexg==}
+  /@rushstack/eslint-patch@1.10.3:
+    resolution: {integrity: sha512-qC/xYId4NMebE6w/V33Fh9gWxLgURiNYgVNObbJl2LZv0GUUItCcCqC5axQSwRaAgaxl2mELq1rMzlswaQ0Zxg==}
     dev: false
 
   /@types/conventional-commits-parser@5.0.0:
