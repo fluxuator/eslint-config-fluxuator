@@ -4,7 +4,7 @@
   "description": "ESLint configuration",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fluxuator/eslint-config-fluxuator.git"
+    "url": "git+https://github.com/fluxuator/eslint-config-fluxuator.git"
   },
   "license": "MIT",
   "engines": {
