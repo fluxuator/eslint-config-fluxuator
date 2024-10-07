@@ -60,7 +60,7 @@ importers:
         version: 19.5.0
       '@commitlint/cz-commitlint':
         specifier: ^19.5.0
-        version: 19.5.0(@types/node@20.11.17)(commitizen@4.3.0(@types/node@20.11.17)(typescript@5.6.2))(inquirer@9.3.7)(typescript@5.6.2)
+        version: 19.5.0(@types/node@20.11.17)(commitizen@4.3.1(@types/node@20.11.17)(typescript@5.6.2))(inquirer@9.3.7)(typescript@5.6.2)
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.18.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.6.2))(eslint@8.57.0)(typescript@5.6.2)
@@ -68,8 +68,8 @@ importers:
         specifier: ^7.18.0
         version: 7.18.0(eslint@8.57.0)(typescript@5.6.2)
       commitizen:
-        specifier: ^4.3.0
-        version: 4.3.0(@types/node@20.11.17)(typescript@5.6.2)
+        specifier: ^4.3.1
+        version: 4.3.1(@types/node@20.11.17)(typescript@5.6.2)
       commitlint:
         specifier: ^19.5.0
         version: 19.5.0(@types/node@20.11.17)(typescript@5.6.2)
@@ -929,8 +929,8 @@ packages:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
     engines: {node: '>=18'}
 
-  commitizen@4.3.0:
-    resolution: {integrity: sha512-H0iNtClNEhT0fotHvGV3E9tDejDeS04sN1veIebsKYGMuGscFaswRoYJKmT3eW85eIJAs0F28bG2+a/9wCOfPw==}
+  commitizen@4.3.1:
+    resolution: {integrity: sha512-gwAPAVTy/j5YcOOebcCRIijn+mSjWJC+IYKivTu6aG8Ei/scoXgfsMRnuAk6b0GRste2J4NGxVdMN3ZpfNaVaw==}
     engines: {node: '>= 12'}
     hasBin: true
 
@@ -3136,13 +3136,13 @@ snapshots:
       '@commitlint/types': 19.5.0
       ajv: 8.12.0
 
-  '@commitlint/cz-commitlint@19.5.0(@types/node@20.11.17)(commitizen@4.3.0(@types/node@20.11.17)(typescript@5.6.2))(inquirer@9.3.7)(typescript@5.6.2)':
+  '@commitlint/cz-commitlint@19.5.0(@types/node@20.11.17)(commitizen@4.3.1(@types/node@20.11.17)(typescript@5.6.2))(inquirer@9.3.7)(typescript@5.6.2)':
     dependencies:
       '@commitlint/ensure': 19.5.0
       '@commitlint/load': 19.5.0(@types/node@20.11.17)(typescript@5.6.2)
       '@commitlint/types': 19.5.0
       chalk: 5.3.0
-      commitizen: 4.3.0(@types/node@20.11.17)(typescript@5.6.2)
+      commitizen: 4.3.1(@types/node@20.11.17)(typescript@5.6.2)
       inquirer: 9.3.7
       lodash.isplainobject: 4.0.6
       word-wrap: 1.2.5
@@ -3858,7 +3858,7 @@ snapshots:
 
   commander@12.1.0: {}
 
-  commitizen@4.3.0(@types/node@20.11.17)(typescript@5.6.2):
+  commitizen@4.3.1(@types/node@20.11.17)(typescript@5.6.2):
     dependencies:
       cachedir: 2.3.0
       cz-conventional-changelog: 3.3.0(@types/node@20.11.17)(typescript@5.6.2)
@@ -3949,7 +3949,7 @@ snapshots:
   cz-conventional-changelog@3.3.0(@types/node@20.11.17)(typescript@5.6.2):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.0(@types/node@20.11.17)(typescript@5.6.2)
+      commitizen: 4.3.1(@types/node@20.11.17)(typescript@5.6.2)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
