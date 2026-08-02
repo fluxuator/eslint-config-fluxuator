@@ -1,3 +1,1 @@
-module.exports = {
-  extends: ['./jest', './testing-library'],
-}
+module.exports = [...require('./jest'), ...require('./testing-library')];
