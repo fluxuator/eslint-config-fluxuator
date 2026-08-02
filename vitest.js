@@ -1,11 +1,17 @@
-// https://github.com/veritem/eslint-plugin-vitest
-module.exports = {
-  overrides: [
-    {
-      files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
-      plugins: ['vitest', 'jest-formatting'],
-      extends: ['plugin:vitest/recommended', 'plugin:jest-formatting/recommended'],
-      rules: require('./rules/vitest', './rules/jest-formatting'),
+// https://github.com/vitest-dev/eslint-plugin-vitest
+const vitest = require('@vitest/eslint-plugin');
+
+const TEST_FILES = ['**/__tests__/**/*', '**/*.{spec,test}.*'];
+
+module.exports = [
+  {
+    files: TEST_FILES,
+    plugins: {
+      vitest,
     },
-  ],
-}
+    rules: {
+      ...vitest.configs.recommended.rules,
+      ...require('./rules/vitest'),
+    },
+  },
+];

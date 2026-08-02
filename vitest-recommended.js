@@ -1,3 +1,1 @@
-module.exports = {
-  extends: ['./vitest', './testing-library'],
-}
+module.exports = [...require('./vitest'), ...require('./testing-library')];
