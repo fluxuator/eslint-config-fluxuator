@@ -139,35 +139,11 @@ module.exports = {
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-assertion.md
   '@typescript-eslint/no-non-null-assertion': 'off',
 
-  // Enforce consistent indentation (indent)
-  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
-  '@typescript-eslint/indent': [
-    'warn',
-    2,
-    {
-      SwitchCase: 1,
-    },
-  ],
-  // Disabled in favour of extended rule `@typescript-eslint/indent`
-  indent: 'off',
-
   // Disallow Empty Functions
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md
   '@typescript-eslint/no-empty-function': 'off',
   // Disabled in favour of extended rule `@typescript-eslint/no-empty-function`
   'no-empty-function': 'off',
-
-  // Require a specific member delimiter style for interfaces and type literals
-  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-delimiter-style.md
-  '@typescript-eslint/member-delimiter-style': [
-    'warn',
-    {
-      multiline: {
-        delimiter: 'semi',
-        requireLast: true,
-      },
-    },
-  ],
 
   // Enforce consistent usage of type imports
   // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/consistent-type-imports.md
