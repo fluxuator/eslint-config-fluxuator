@@ -1,3 +1,3 @@
-module.exports = {
-  extends: ['plugin:react/jsx-runtime'],
-}
+const react = require('eslint-plugin-react');
+
+module.exports = [react.configs.flat['jsx-runtime']];

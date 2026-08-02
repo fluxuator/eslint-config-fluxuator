@@ -1,7 +1,5 @@
-module.exports = {
-  extends: [
-    './index',
-    './jsx-runtime',
-    './prettier', // NOTE: Prettier config should be always at the last position!
-  ],
-}
+module.exports = [
+  ...require('./index'),
+  ...require('./jsx-runtime'),
+  ...require('./prettier'), // NOTE: Prettier config should be always at the last position!
+];
