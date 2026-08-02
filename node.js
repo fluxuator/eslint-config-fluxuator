@@ -1,37 +1,40 @@
-module.exports = {
-  root: true,
+const globals = require('globals')
+const importX = require('eslint-plugin-import-x')
+const unusedImports = require('eslint-plugin-unused-imports')
+const tsParser = require('@typescript-eslint/parser')
+const tsPlugin = require('@typescript-eslint/eslint-plugin')
 
-  plugins: ['import', 'unused-imports'],
-
-  env: {
-    browser: true,
-    commonjs: true,
-    es6: true,
-    jest: true,
-    node: true,
-  },
-
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
-
-  rules: require('./rules/node'),
-
-  overrides: [
-    {
-      files: ['**/*.ts'],
-      parser: '@typescript-eslint/parser',
-      plugins: ['@typescript-eslint'],
-      parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
-        // typescript-eslint specific options
-        warnOnUnsupportedTypeScriptVersion: true,
-      },
-      // If adding a typescript-eslint version of an existing ESLint rule,
-      // make sure to disable the ESLint rule here.
-      rules: require('./rules/typescript'),
+module.exports = [
+  {
+    plugins: {
+      'import-x': importX,
+      'unused-imports': unusedImports,
     },
-  ],
-}
+    languageOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2018,
+      globals: {
+        ...globals.browser,
+        ...globals.commonjs,
+        ...globals.es2021,
+        ...globals.jest,
+        ...globals.node,
+      },
+    },
+    rules: require('./rules/node'),
+  },
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 2021,
+      sourceType: 'module',
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    // If adding a typescript-eslint version of an existing ESLint rule,
+    // make sure to disable the ESLint rule here.
+    rules: require('./rules/typescript'),
+  },
+]
