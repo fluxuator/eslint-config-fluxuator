@@ -157,13 +157,13 @@ module.exports = {
   'getter-return': 'warn',
 
   // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
-  'import/first': 'error',
-  'import/newline-after-import': 'error',
-  'import/no-amd': 'error',
+  'import-x/first': 'error',
+  'import-x/newline-after-import': 'error',
+  'import-x/no-amd': 'error',
 
   // Reports if a module's default export is unnamed.
   // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-anonymous-default-export.md
-  'import/no-anonymous-default-export': [
+  'import-x/no-anonymous-default-export': [
     'warn',
     {
       allowArray: true,
@@ -178,9 +178,9 @@ module.exports = {
 
   // Reports if a resolved path is imported more than once.
   // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-duplicates.md#inline-type-imports
-  'import/no-duplicates': ['warn', { 'prefer-inline': true }],
+  'import-x/no-duplicates': ['warn', { 'prefer-inline': true }],
 
-  'import/no-webpack-loader-syntax': 'error',
+  'import-x/no-webpack-loader-syntax': 'error',
 
   semi: ['warn', 'always'],
 
@@ -238,7 +238,7 @@ module.exports = {
 
   // Prevents unnecessary path segments in import and require statements.
   // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-useless-path-segments.md
-  'import/no-useless-path-segments': ['warn', { noUselessIndex: true }],
+  'import-x/no-useless-path-segments': ['warn', { noUselessIndex: true }],
 
   // Require quotes around object literal property names
   // https://eslint.org/docs/rules/quote-props
