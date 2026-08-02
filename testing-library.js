@@ -1,11 +1,15 @@
 // https://github.com/testing-library/eslint-plugin-testing-library
-module.exports = {
-  overrides: [
-    {
-      files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
-      plugins: ['testing-library'],
-      extends: ['plugin:testing-library/react'],
-      rules: require('./rules/testing-library'),
+const testingLibrary = require('eslint-plugin-testing-library');
+
+const TEST_FILES = ['**/__tests__/**/*', '**/*.{spec,test}.*'];
+
+module.exports = [
+  {
+    files: TEST_FILES,
+    plugins: testingLibrary.configs['flat/react'].plugins,
+    rules: {
+      ...testingLibrary.configs['flat/react'].rules,
+      ...require('./rules/testing-library'),
     },
-  ],
-}
+  },
+];
