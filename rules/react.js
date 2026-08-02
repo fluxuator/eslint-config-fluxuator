@@ -138,7 +138,10 @@ module.exports = {
 
   // Enforce or disallow spaces inside curly braces in JSX attributes
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md
-  'react/jsx-curly-spacing': ['warn', 'never', { allowMultiline: true }],
+  // Disabled: throws under real ESLint v10 (eslint-plugin-react@7.37.5 calls
+  // sourceCode.isSpaceBetweenTokens, removed from ESLint's SourceCode object).
+  // No fixed release exists yet; re-enable once eslint-plugin-react ships one.
+  'react/jsx-curly-spacing': 'off',
 
   // Validate props indentation in JSX
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
@@ -267,7 +270,8 @@ module.exports = {
 
   // Enforce spacing around jsx equals signs
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-equals-spacing.md
-  'react/jsx-equals-spacing': ['warn', 'never'],
+  // Disabled: same sourceCode.isSpaceBetweenTokens incompatibility as jsx-curly-spacing.
+  'react/jsx-equals-spacing': 'off',
 
   // Enforce JSX indentation
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
@@ -275,7 +279,9 @@ module.exports = {
 
   // only .jsx and .tsx files may have JSX
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
-  'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.tsx'] }],
+  // Disabled: throws under real ESLint v10 (eslint-plugin-react@7.37.5 calls
+  // context.getFilename(), removed from ESLint's rule context object).
+  'react/jsx-filename-extension': 'off',
 
   // disallow using React.render/ReactDOM.render's return value
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-render-return-value.md
@@ -305,15 +311,8 @@ module.exports = {
 
   // Validate whitespace in and around the JSX opening and closing brackets
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
-  'react/jsx-tag-spacing': [
-    'warn',
-    {
-      closingSlash: 'never',
-      beforeSelfClosing: 'always',
-      afterOpening: 'never',
-      beforeClosing: 'never',
-    },
-  ],
+  // Disabled: same sourceCode.isSpaceBetweenTokens incompatibility as jsx-curly-spacing.
+  'react/jsx-tag-spacing': 'off',
 
   // Prevent usage of Array index in keys
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
@@ -384,4 +383,4 @@ module.exports = {
   // Enforce defaultProps declarations alphabetical sorting
   // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-default-props.md
   'react/jsx-sort-default-props': 'off',
-}
+};
