@@ -1,11 +1,13 @@
-// https://github.com/veritem/eslint-plugin-vitest
-module.exports = {
-  overrides: [
-    {
-      files: ['**/*.{jsx,tsx}'],
-      plugins: ['jsx-a11y'],
-      extends: ['plugin:jsx-a11y/recommended'],
-      rules: require('./rules/a11y'),
+const jsxA11y = require('eslint-plugin-jsx-a11y');
+
+module.exports = [
+  {
+    files: ['**/*.{jsx,tsx}'],
+    plugins: jsxA11y.flatConfigs.recommended.plugins,
+    languageOptions: jsxA11y.flatConfigs.recommended.languageOptions,
+    rules: {
+      ...jsxA11y.flatConfigs.recommended.rules,
+      ...require('./rules/a11y'),
     },
-  ],
-}
+  },
+];
