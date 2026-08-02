@@ -24,10 +24,12 @@
 ### Task 1: Update `package.json` dependencies, peers, and engines
 
 **Files:**
+
 - Modify: `package.json`
 - Modify: `.nvmrc`
 
 **Interfaces:**
+
 - Produces: an installed `node_modules` containing `eslint@10.8.0`, `eslint-plugin-import-x@4.17.1`, `@vitest/eslint-plugin@^1.6.0`, `globals@17.8.0`, and bumped `@typescript-eslint`/`eslint-plugin-jest`/`eslint-plugin-testing-library`/`eslint-plugin-react`/`eslint-plugin-react-hooks`/`eslint-plugin-jsx-a11y`/`eslint-plugin-mdx` — every later task's verification steps run against this real install.
 
 - [ ] **Step 1: Edit `.nvmrc`**
@@ -41,12 +43,15 @@ Replace the entire file content (currently `v20`) with:
 - [ ] **Step 2: Edit `package.json` `engines`**
 
 Change:
+
 ```json
   "engines": {
     "node": ">=18"
   },
 ```
+
 to:
+
 ```json
   "engines": {
     "node": "^22.13.0 || >=24"
@@ -56,6 +61,7 @@ to:
 - [ ] **Step 3: Edit `package.json` `dependencies`**
 
 Current:
+
 ```json
   "dependencies": {
     "@rushstack/eslint-patch": "^1.10.4",
@@ -64,7 +70,9 @@ Current:
     "eslint-plugin-unused-imports": "^4.1.4"
   },
 ```
+
 Replace with:
+
 ```json
   "dependencies": {
     "confusing-browser-globals": "^1.0.11",
@@ -73,11 +81,13 @@ Replace with:
     "globals": "^17.8.0"
   },
 ```
+
 (`@rushstack/eslint-patch` is dropped — it's never `require()`'d anywhere in this codebase, and its purpose, patching eslintrc's plugin-resolution algorithm, doesn't apply once flat config resolves plugins via normal `require`. `eslint-plugin-import` is replaced by `eslint-plugin-import-x`.)
 
 - [ ] **Step 4: Edit `package.json` `devDependencies`**
 
 Current:
+
 ```json
   "devDependencies": {
     "@babel/core": "^7.29.7",
@@ -103,7 +113,9 @@ Current:
     "typescript": "^5.7.3"
   },
 ```
+
 Replace with:
+
 ```json
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
@@ -133,11 +145,13 @@ Replace with:
     "typescript": "^5.7.3"
   },
 ```
+
 (`@babel/core`/`@babel/eslint-parser` removed — no longer used. `eslint` bumped to the v10 line. `eslint-plugin-jest-formatting`, `eslint-plugin-jsx-a11y`, `eslint-plugin-mdx`, `eslint-plugin-react`, `eslint-plugin-react-hooks`, `@vitest/eslint-plugin` are added as devDependencies so later tasks in this plan can smoke-test every shipped config file against a real install, matching how `eslint-plugin-jest`/`eslint-plugin-testing-library` were already devDependencies for the same reason.)
 
 - [ ] **Step 5: Edit `package.json` `peerDependencies`**
 
 Current:
+
 ```json
   "peerDependencies": {
     "@babel/core": "^7.23.7",
@@ -160,7 +174,9 @@ Current:
     "typescript": "^4 || ^5"
   },
 ```
+
 Replace with:
+
 ```json
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.0.0",
@@ -184,6 +200,7 @@ Replace with:
 - [ ] **Step 6: Edit `package.json` `peerDependenciesMeta`**
 
 Current:
+
 ```json
   "peerDependenciesMeta": {
     "@babel/core": {
@@ -239,7 +256,9 @@ Current:
     }
   },
 ```
+
 Replace with:
+
 ```json
   "peerDependenciesMeta": {
     "@typescript-eslint/eslint-plugin": {
@@ -290,7 +309,7 @@ Replace with:
 - [ ] **Step 7: Install and verify**
 
 Run: `pnpm install`
-Expected: install succeeds with no `ERESOLVE`/unmet-peer *errors* (peer *warnings* for `eslint-plugin-react`/`eslint-plugin-jsx-a11y` are expected and fine — their own declared peer ranges still lag v10 even though they work; this repo's `pnpm-lock.yaml` will record the resolution regardless).
+Expected: install succeeds with no `ERESOLVE`/unmet-peer _errors_ (peer _warnings_ for `eslint-plugin-react`/`eslint-plugin-jsx-a11y` are expected and fine — their own declared peer ranges still lag v10 even though they work; this repo's `pnpm-lock.yaml` will record the resolution regardless).
 
 Run: `node -e "console.log(require('eslint/package.json').version)"`
 Expected: `10.8.0`
@@ -315,15 +334,18 @@ bumped."
 ### Task 2: Rewrite `rules/node.js` — rename `import/*` to `import-x/*`
 
 **Files:**
+
 - Modify: `rules/node.js`
 
 **Interfaces:**
+
 - Consumes: nothing new.
 - Produces: `module.exports` from `rules/node.js` — an object whose keys are unchanged except the 7 import-rule keys, now consumed by Task 3 (`node.js`).
 
 - [ ] **Step 1: Edit the import rule keys**
 
 In `rules/node.js`, these 7 keys currently start with `import/`:
+
 - `'import/first'`
 - `'import/newline-after-import'`
 - `'import/no-amd'`
@@ -333,6 +355,7 @@ In `rules/node.js`, these 7 keys currently start with `import/`:
 - `'import/no-useless-path-segments'`
 
 Rename every one of them to the `import-x/` prefix, keeping their values exactly as-is. For example:
+
 ```js
   // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
   'import-x/first': 'error',
@@ -360,12 +383,15 @@ Rename every one of them to the `import-x/` prefix, keeping their values exactly
 
   'import-x/no-webpack-loader-syntax': 'error',
 ```
+
 and further down:
+
 ```js
   // Prevents unnecessary path segments in import and require statements.
   // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-useless-path-segments.md
   'import-x/no-useless-path-segments': ['warn', { noUselessIndex: true }],
 ```
+
 Every other key in the file (all the plain `no-*`/`unused-imports/*` rules, `restrictedGlobals` usage) stays exactly as it is.
 
 - [ ] **Step 2: Verify the rename is complete**
@@ -388,10 +414,12 @@ git commit -m "refactor(rules): rename import/* rule keys to import-x/*"
 ### Task 3: Rewrite `node.js` — flat config, Node base
 
 **Files:**
+
 - Modify: `node.js`
-- Test fixture (create, verify, delete): `.tmp-verify-node.js`, `.tmp-verify-node.config.js`, `.tmp-verify-node.ts`
+- Test fixture (create, verify, delete): `.tmp-verify-node.js`, `.tmp-verify-node-config.js`, `.tmp-verify-node.ts`
 
 **Interfaces:**
+
 - Consumes: `rules/node.js` (Task 2's renamed export), `rules/typescript.js` (unchanged).
 - Produces: `module.exports` — an array of flat config objects — consumed by `node-recommended.js` (Task 5) and the repo's own `eslint.config.js` (Task 12).
 
@@ -444,34 +472,37 @@ This mirrors the original `node.js` exactly: same `env` set (`browser`, `commonj
 
 - [ ] **Step 2: Write the verification fixture**
 
-Create `.tmp-verify-node.config.js`:
+Create `.tmp-verify-node-config.js`:
+
 ```js
 module.exports = [...require('./node.js')]
 ```
 
 Create `.tmp-verify-node.js`:
+
 ```js
-var unused = 1;
-import { foo } from 'bar';
-import { baz } from 'bar';
+var unused = 1
+import { foo } from 'bar'
+import { baz } from 'bar'
 ```
 
 Create `.tmp-verify-node.ts`:
+
 ```ts
-const x: number = 1;
+const x: number = 1
 ```
 
 - [ ] **Step 3: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-node.config.js .tmp-verify-node.js`
+Run: `node_modules/.bin/eslint --config .tmp-verify-node-config.js .tmp-verify-node.js`
 Expected: reports `import-x/no-duplicates` (two imports from `'bar'`) and `unused-imports/no-unused-vars` (`unused`) — confirms the plugin rename resolved correctly and the base config loads without error.
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-node.config.js .tmp-verify-node.ts`
+Run: `node_modules/.bin/eslint --config .tmp-verify-node-config.js .tmp-verify-node.ts`
 Expected: no parser errors (confirms `@typescript-eslint/parser` override applies to `.ts` files; `x` is used so no unused-var warning expected).
 
 - [ ] **Step 4: Delete the fixtures**
 
-Run: `rm .tmp-verify-node.config.js .tmp-verify-node.js .tmp-verify-node.ts`
+Run: `rm .tmp-verify-node-config.js .tmp-verify-node.js .tmp-verify-node.ts`
 
 - [ ] **Step 5: Commit**
 
@@ -488,10 +519,12 @@ instead of an eslintrc-shaped object with extends/overrides."
 ### Task 4: Rewrite `index.js` — flat config, browser/React base (espree)
 
 **Files:**
+
 - Modify: `index.js`
-- Test fixture (create, verify, delete): `.tmp-verify-index.config.js`, `.tmp-verify-index.jsx`
+- Test fixture (create, verify, delete): `.tmp-verify-index-config.js`, `.tmp-verify-index.jsx`
 
 **Interfaces:**
+
 - Consumes: `rules/node.js`, `rules/react.js`, `rules/typescript.js` (all unchanged content except Task 2's rename, already reflected via `require('./rules/node')`).
 - Produces: `module.exports` — array of flat config objects — consumed by `react-recommended.js` (Task 5).
 
@@ -574,28 +607,30 @@ Notes on what changed from the original: no `parser: '@babel/eslint-parser'` / `
 
 - [ ] **Step 2: Write the verification fixture**
 
-Create `.tmp-verify-index.config.js`:
+Create `.tmp-verify-index-config.js`:
+
 ```js
 module.exports = [...require('./index.js')]
 ```
 
 Create `.tmp-verify-index.jsx`:
+
 ```jsx
 function App() {
-  return <div className="a"></div>;
+  return <div className="a"></div>
 }
 
-export default App;
+export default App
 ```
 
 - [ ] **Step 3: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-index.config.js .tmp-verify-index.jsx`
+Run: `node_modules/.bin/eslint --config .tmp-verify-index-config.js .tmp-verify-index.jsx`
 Expected: reports `react/react-in-jsx-scope` (React not imported, and this base config — unlike `jsx-runtime.js` — still requires it) and/or `react/jsx-uses-react` related warnings, with **no parser error on the JSX syntax itself** — confirms espree is parsing JSX correctly without `@babel/eslint-parser`.
 
 - [ ] **Step 4: Delete the fixtures**
 
-Run: `rm .tmp-verify-index.config.js .tmp-verify-index.jsx`
+Run: `rm .tmp-verify-index-config.js .tmp-verify-index.jsx`
 
 - [ ] **Step 5: Commit**
 
@@ -614,12 +649,14 @@ already handles natively)."
 ### Task 5: Rewrite `jsx-runtime.js`, `node-recommended.js`, `react-recommended.js`
 
 **Files:**
+
 - Modify: `jsx-runtime.js`
 - Modify: `node-recommended.js`
 - Modify: `react-recommended.js`
-- Test fixture (create, verify, delete): `.tmp-verify-react-rec.config.js`, `.tmp-verify-react-rec.jsx`
+- Test fixture (create, verify, delete): `.tmp-verify-react-rec-config.js`, `.tmp-verify-react-rec.jsx`
 
 **Interfaces:**
+
 - Consumes: `index.js` (Task 4), `node.js` (Task 3), `prettier.js` (Task 6 — must be done before this task's verification step, or reorder: see note below).
 - Produces: `module.exports` arrays consumed by end users and by `jest-recommended.js`/`vitest-recommended.js` indirectly (they don't depend on these, but follow the same pattern).
 
@@ -638,6 +675,7 @@ module.exports = [react.configs.flat['jsx-runtime']]
 - [ ] **Step 2: Replace `node-recommended.js` and `react-recommended.js` content**
 
 `node-recommended.js`:
+
 ```js
 module.exports = [
   ...require('./node'),
@@ -646,6 +684,7 @@ module.exports = [
 ```
 
 `react-recommended.js`:
+
 ```js
 module.exports = [
   ...require('./index'),
@@ -656,28 +695,30 @@ module.exports = [
 
 - [ ] **Step 3: Write the verification fixture (run after Task 6 is complete)**
 
-Create `.tmp-verify-react-rec.config.js`:
+Create `.tmp-verify-react-rec-config.js`:
+
 ```js
 module.exports = [...require('./react-recommended.js')]
 ```
 
 Create `.tmp-verify-react-rec.jsx`:
+
 ```jsx
 function App() {
-  return <div className="a"></div>;
+  return <div className="a"></div>
 }
 
-export default App;
+export default App
 ```
 
 - [ ] **Step 4: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-react-rec.config.js .tmp-verify-react-rec.jsx`
+Run: `node_modules/.bin/eslint --config .tmp-verify-react-rec-config.js .tmp-verify-react-rec.jsx`
 Expected: **no** `react/react-in-jsx-scope` warning (jsx-runtime override turned it off, unlike Task 4's plain `index.js` test) — confirms the composition order (`index` → `jsx-runtime` → `prettier`) applies correctly, with jsx-runtime's rule-off winning over index's rule-on.
 
 - [ ] **Step 5: Delete the fixtures**
 
-Run: `rm .tmp-verify-react-rec.config.js .tmp-verify-react-rec.jsx`
+Run: `rm .tmp-verify-react-rec-config.js .tmp-verify-react-rec.jsx`
 
 - [ ] **Step 6: Commit**
 
@@ -694,10 +735,12 @@ via array spreading instead of eslintrc extends chains."
 ### Task 6: Rewrite `prettier.js`
 
 **Files:**
+
 - Modify: `prettier.js`
-- Test fixture (create, verify, delete): `.tmp-verify-prettier.config.js`, `.tmp-verify-prettier.js`
+- Test fixture (create, verify, delete): `.tmp-verify-prettier-config.js`, `.tmp-verify-prettier.js`
 
 **Interfaces:**
+
 - Consumes: nothing from this package.
 - Produces: `module.exports` — array of flat config objects — consumed by `node-recommended.js`, `react-recommended.js` (Task 5).
 
@@ -741,24 +784,26 @@ module.exports = [
 
 - [ ] **Step 2: Write the verification fixture**
 
-Create `.tmp-verify-prettier.config.js`:
+Create `.tmp-verify-prettier-config.js`:
+
 ```js
 module.exports = [...require('./prettier.js')]
 ```
 
 Create `.tmp-verify-prettier.js` (double-quoted string, violates the configured `quotes` rule and Prettier formatting):
+
 ```js
-const x = "hello"
+const x = 'hello'
 ```
 
 - [ ] **Step 3: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-prettier.config.js .tmp-verify-prettier.js`
+Run: `node_modules/.bin/eslint --config .tmp-verify-prettier-config.js .tmp-verify-prettier.js`
 Expected: reports both `quotes` (double quote used, single required) and `prettier/prettier` (missing semicolon is fine per config since `semi: false`, but the double-quote string itself is also a Prettier formatting violation given `singleQuote: true`).
 
 - [ ] **Step 4: Delete the fixtures**
 
-Run: `rm .tmp-verify-prettier.config.js .tmp-verify-prettier.js`
+Run: `rm .tmp-verify-prettier-config.js .tmp-verify-prettier.js`
 
 - [ ] **Step 5: Commit**
 
@@ -775,10 +820,12 @@ built on eslint-plugin-prettier's own flat 'recommended' export."
 ### Task 7: Rewrite `a11y.js`
 
 **Files:**
+
 - Modify: `a11y.js`
-- Test fixture (create, verify, delete): `.tmp-verify-a11y.config.js`, `.tmp-verify-a11y.jsx`
+- Test fixture (create, verify, delete): `.tmp-verify-a11y-config.js`, `.tmp-verify-a11y.jsx`
 
 **Interfaces:**
+
 - Consumes: `rules/a11y.js` (unchanged).
 - Produces: `module.exports` — array of flat config objects — standalone optional add-on, not consumed by any other file in this package.
 
@@ -804,28 +851,30 @@ module.exports = [
 
 - [ ] **Step 2: Write the verification fixture**
 
-Create `.tmp-verify-a11y.config.js`:
+Create `.tmp-verify-a11y-config.js`:
+
 ```js
 module.exports = [...require('./a11y.js')]
 ```
 
 Create `.tmp-verify-a11y.jsx`:
+
 ```jsx
 function App() {
-  return <img src="a.png" />;
+  return <img src="a.png" />
 }
 
-export default App;
+export default App
 ```
 
 - [ ] **Step 3: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-a11y.config.js .tmp-verify-a11y.jsx`
+Run: `node_modules/.bin/eslint --config .tmp-verify-a11y-config.js .tmp-verify-a11y.jsx`
 Expected: reports `jsx-a11y/alt-text` (`<img>` missing `alt`) — confirms both the plugin's bundled recommended rules and this package's own `rules/a11y.js` overrides are active.
 
 - [ ] **Step 4: Delete the fixtures**
 
-Run: `rm .tmp-verify-a11y.config.js .tmp-verify-a11y.jsx`
+Run: `rm .tmp-verify-a11y-config.js .tmp-verify-a11y.jsx`
 
 - [ ] **Step 5: Commit**
 
@@ -842,11 +891,13 @@ built on eslint-plugin-jsx-a11y's own flatConfigs.recommended export."
 ### Task 8: Rewrite `jest.js` and `jest-recommended.js`
 
 **Files:**
+
 - Modify: `jest.js`
 - Modify: `jest-recommended.js`
-- Test fixture (create, verify, delete): `.tmp-verify-jest.config.js`, `.tmp-verify-jest.test.js`
+- Test fixture (create, verify, delete): `.tmp-verify-jest-config.js`, `.tmp-verify-jest.test.js`
 
 **Interfaces:**
+
 - Consumes: `rules/jest.js` (unchanged), `rules/jest-formatting.js` (still empty, no longer required directly — see note), `testing-library.js` (Task 10, for `jest-recommended.js`).
 - Produces: `module.exports` arrays. `jest-recommended.js` is a standalone convenience bundle, consumed by nothing else in this package.
 
@@ -890,12 +941,14 @@ module.exports = [...require('./jest'), ...require('./testing-library')]
 
 - [ ] **Step 3: Write the verification fixture**
 
-Create `.tmp-verify-jest.config.js`:
+Create `.tmp-verify-jest-config.js`:
+
 ```js
 module.exports = [...require('./jest.js')]
 ```
 
 Create `.tmp-verify-jest.test.js`:
+
 ```js
 describe('a', () => {
   test('b', () => {
@@ -909,12 +962,12 @@ test('c', () => {
 
 - [ ] **Step 4: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-jest.config.js .tmp-verify-jest.test.js`
+Run: `node_modules/.bin/eslint --config .tmp-verify-jest-config.js .tmp-verify-jest.test.js`
 Expected: reports `jest-formatting/padding-around-describe-blocks` and/or `jest-formatting/padding-around-test-blocks` (missing blank line between the `describe` block and the trailing `test` block) — confirms jest-formatting's rules are actually wired up (this is the exact class of thing the original `require()` bug silently skipped, now fixed). No `jest/*` errors expected since `describe`/`test`/`expect` are correctly recognized as jest globals.
 
 - [ ] **Step 5: Delete the fixtures**
 
-Run: `rm .tmp-verify-jest.config.js .tmp-verify-jest.test.js`
+Run: `rm .tmp-verify-jest-config.js .tmp-verify-jest.test.js`
 
 - [ ] **Step 6: Commit**
 
@@ -933,11 +986,13 @@ jest-formatting's bundled rules are now correctly applied."
 ### Task 9: Rewrite `vitest.js` and `vitest-recommended.js`
 
 **Files:**
+
 - Modify: `vitest.js`
 - Modify: `vitest-recommended.js`
-- Test fixture (create, verify, delete): `.tmp-verify-vitest.config.js`, `.tmp-verify-vitest.test.js`
+- Test fixture (create, verify, delete): `.tmp-verify-vitest-config.js`, `.tmp-verify-vitest.test.js`
 
 **Interfaces:**
+
 - Consumes: `rules/vitest.js` (unchanged — confirmed `@vitest/eslint-plugin` still registers under the `vitest` plugin key, so the existing `vitest/consistent-test-it` rule key needs no rename), `rules/jest-formatting.js` (same note as Task 8), `testing-library.js` (Task 10).
 - Produces: `module.exports` arrays. `vitest-recommended.js` is a standalone convenience bundle.
 
@@ -981,12 +1036,14 @@ module.exports = [...require('./vitest'), ...require('./testing-library')]
 
 - [ ] **Step 3: Write the verification fixture**
 
-Create `.tmp-verify-vitest.config.js`:
+Create `.tmp-verify-vitest-config.js`:
+
 ```js
 module.exports = [...require('./vitest.js')]
 ```
 
 Create `.tmp-verify-vitest.test.js`:
+
 ```js
 describe('a', () => {
   it('b', () => {
@@ -997,12 +1054,12 @@ describe('a', () => {
 
 - [ ] **Step 4: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-vitest.config.js .tmp-verify-vitest.test.js`
+Run: `node_modules/.bin/eslint --config .tmp-verify-vitest-config.js .tmp-verify-vitest.test.js`
 Expected: no crash on load (confirms `@vitest/eslint-plugin` requires and runs cleanly under `eslint@10.8.0`, unlike the old `eslint-plugin-vitest`). No `vitest/consistent-test-it` violation expected since the fixture already uses `it`.
 
 - [ ] **Step 5: Delete the fixtures**
 
-Run: `rm .tmp-verify-vitest.config.js .tmp-verify-vitest.test.js`
+Run: `rm .tmp-verify-vitest-config.js .tmp-verify-vitest.test.js`
 
 - [ ] **Step 6: Commit**
 
@@ -1021,10 +1078,12 @@ eslint-plugin-vitest, which crashes when loaded under real ESLint v10."
 ### Task 10: Rewrite `testing-library.js`
 
 **Files:**
+
 - Modify: `testing-library.js`
-- Test fixture (create, verify, delete): `.tmp-verify-tl.config.js`, `.tmp-verify-tl.test.js`
+- Test fixture (create, verify, delete): `.tmp-verify-tl-config.js`, `.tmp-verify-tl.test.js`
 
 **Interfaces:**
+
 - Consumes: `rules/testing-library.js` (unchanged).
 - Produces: `module.exports` — array of flat config objects — consumed by `jest-recommended.js` (Task 8) and `vitest-recommended.js` (Task 9).
 
@@ -1052,12 +1111,14 @@ module.exports = [
 
 - [ ] **Step 2: Write the verification fixture**
 
-Create `.tmp-verify-tl.config.js`:
+Create `.tmp-verify-tl-config.js`:
+
 ```js
 module.exports = [...require('./testing-library.js')]
 ```
 
 Create `.tmp-verify-tl.test.js`:
+
 ```js
 import { render, screen } from '@testing-library/react'
 
@@ -1069,12 +1130,12 @@ test('a', async () => {
 
 - [ ] **Step 3: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-tl.config.js .tmp-verify-tl.test.js`
+Run: `node_modules/.bin/eslint --config .tmp-verify-tl-config.js .tmp-verify-tl.test.js`
 Expected: no crash on load, confirming the flat config export resolves; specific rule output isn't asserted here since it depends on unrelated JSX-parse setup this minimal fixture doesn't include — the goal of this check is confirming the plugin loads and applies without error under v10, matching the pattern used for the other plugin-swap tasks.
 
 - [ ] **Step 4: Delete the fixtures**
 
-Run: `rm .tmp-verify-tl.config.js .tmp-verify-tl.test.js`
+Run: `rm .tmp-verify-tl-config.js .tmp-verify-tl.test.js`
 
 - [ ] **Step 5: Commit**
 
@@ -1091,10 +1152,12 @@ objects built on eslint-plugin-testing-library's flat/react export."
 ### Task 11: Rewrite `mdx.js`
 
 **Files:**
+
 - Modify: `mdx.js`
-- Test fixture (create, verify, delete): `.tmp-verify-mdx.config.js`, `.tmp-verify-mdx.mdx`
+- Test fixture (create, verify, delete): `.tmp-verify-mdx-config.js`, `.tmp-verify-mdx.mdx`
 
 **Interfaces:**
+
 - Consumes: nothing from this package.
 - Produces: `module.exports` — array of flat config objects — standalone optional add-on.
 
@@ -1115,12 +1178,14 @@ module.exports = [
 
 - [ ] **Step 2: Write the verification fixture**
 
-Create `.tmp-verify-mdx.config.js`:
+Create `.tmp-verify-mdx-config.js`:
+
 ```js
 module.exports = [...require('./mdx.js')]
 ```
 
 Create `.tmp-verify-mdx.mdx`:
+
 ```mdx
 # Hello
 
@@ -1129,12 +1194,12 @@ Some **text**.
 
 - [ ] **Step 3: Run verification**
 
-Run: `node_modules/.bin/eslint --config .tmp-verify-mdx.config.js .tmp-verify-mdx.mdx`
+Run: `node_modules/.bin/eslint --config .tmp-verify-mdx-config.js .tmp-verify-mdx.mdx`
 Expected: exits cleanly (no parse errors), confirming `mdx.flat`'s processor correctly handles a `.mdx` file under v10.
 
 - [ ] **Step 4: Delete the fixtures**
 
-Run: `rm .tmp-verify-mdx.config.js .tmp-verify-mdx.mdx`
+Run: `rm .tmp-verify-mdx-config.js .tmp-verify-mdx.mdx`
 
 - [ ] **Step 5: Commit**
 
@@ -1151,10 +1216,12 @@ built on eslint-plugin-mdx's own flat export."
 ### Task 12: Dogfood — migrate the repo's own lint config
 
 **Files:**
+
 - Create: `eslint.config.js`
 - Delete: `.eslintrc`
 
 **Interfaces:**
+
 - Consumes: `node-recommended.js` (Task 5).
 - Produces: nothing consumed elsewhere — this is the config ESLint actually loads when you run `pnpm lint` in this repo.
 
@@ -1195,9 +1262,11 @@ v10 no longer supports the eslintrc format at all."
 ### Task 13: Rewrite `README.md` for flat config consumption
 
 **Files:**
+
 - Modify: `README.md`
 
 **Interfaces:**
+
 - Consumes: nothing (documentation only).
 - Produces: nothing consumed by code — this is the task where a future consumer learns how to actually use the package.
 
@@ -1205,7 +1274,7 @@ v10 no longer supports the eslintrc format at all."
 
 Replace (lines 8–57 of the current README, "React App" through the `lint`/`lint:fix` scripts section) with:
 
-```markdown
+````markdown
 ### React App
 
 1. Install this package and ESLint
@@ -1213,6 +1282,7 @@ Replace (lines 8–57 of the current README, "React App" through the `lint`/`lin
 ```sh
 pnpm add -D eslint-config-fluxuator eslint@^9.0.0
 ```
+````
 
 2. Create a file named `eslint.config.js` in the root folder of your project:
 
@@ -1245,7 +1315,8 @@ module.exports = [
   }
 }
 ```
-```
+
+````
 
 - [ ] **Step 2: Replace the "React App (Recommended)" section**
 
@@ -1260,7 +1331,7 @@ including Prettier, but without testing libraries (should be installed separatel
 {
   extends: ['fluxuator/react-recommended'],
 }
-```
+````
 
 ```json5
 {
@@ -1273,7 +1344,8 @@ including Prettier, but without testing libraries (should be installed separatel
 ```
 
 _NOTE: Requires [Prettier](#prettier) to be installed additionally_
-```
+
+````
 with:
 ```markdown
 ### React App (Recommended)
@@ -1287,10 +1359,11 @@ module.exports = [
   // ...require('eslint-config-fluxuator/vitest-recommended'),
   // ...require('eslint-config-fluxuator/jest-recommended'),
 ]
-```
+````
 
 _NOTE: Requires [Prettier](#prettier) to be installed additionally_
-```
+
+````
 
 - [ ] **Step 3: Replace the "NodeJS App" and "NodeJS App (Recommended)" sections**
 
@@ -1305,7 +1378,7 @@ yarn add -D eslint-config-fluxuator \
             eslint@^8.0.0 \
             typescript@^5 \
               @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6
-```
+````
 
 2. Create a file named `.eslintrc` with following contents in the root folder of your project:
 
@@ -1341,7 +1414,8 @@ including Prettier, but without testing libraries (should be installed separatel
 _NOTE: Requires [Prettier](#prettier) to be installed additionally_
 
 That's it!
-```
+
+````
 with:
 ```markdown
 ### NodeJS App
@@ -1353,7 +1427,7 @@ pnpm add -D eslint-config-fluxuator \
             eslint@^9.0.0 \
             typescript@^5 \
               @typescript-eslint/eslint-plugin@^8 @typescript-eslint/parser@^8
-```
+````
 
 2. Create a file named `eslint.config.js` in the root folder of your project:
 
@@ -1380,16 +1454,14 @@ You can also enable all recommended rules for your NodeJS App with only one conf
 including Prettier, but without testing libraries (should be installed separately)
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator/node-recommended'),
-  ...require('eslint-config-fluxuator/jest'),
-]
+module.exports = [...require('eslint-config-fluxuator/node-recommended'), ...require('eslint-config-fluxuator/jest')]
 ```
 
 _NOTE: Requires [Prettier](#prettier) to be installed additionally_
 
 That's it!
-```
+
+````
 
 - [ ] **Step 4: Replace the "Extensions" section (Jest, Vitest, Testing Library, Prettier, Accessibility Checks)**
 
@@ -1407,15 +1479,12 @@ on [`eslint-plugin-jest`](https://github.com/jest-community/eslint-plugin-jest))
 
 ```sh
 pnpm add -D jest eslint-plugin-jest eslint-plugin-jest-formatting
-```
+````
 
 2. Enable these rules by spreading the Jest config into your ESLint config array.
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator'),
-  ...require('eslint-config-fluxuator/jest'),
-]
+module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/jest')]
 ```
 
 ### Vitest
@@ -1433,10 +1502,7 @@ pnpm add -D vitest @vitest/eslint-plugin eslint-plugin-jest-formatting
 2. Enable these rules by spreading the Vitest config into your ESLint config array.
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator'),
-  ...require('eslint-config-fluxuator/vitest'),
-]
+module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/vitest')]
 ```
 
 ### Testing Library
@@ -1472,10 +1538,7 @@ pnpm add -D prettier eslint-config-prettier eslint-plugin-prettier
    last, so it gets the chance to override other configs.
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator'),
-  ...require('eslint-config-fluxuator/prettier'),
-]
+module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/prettier')]
 ```
 
 ### Accessibility Checks
@@ -1486,12 +1549,10 @@ activated:
 If you want to enable even more accessibility rules, spread the a11y config into your ESLint config array:
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator'),
-  ...require('eslint-config-fluxuator/a11y'),
-]
+module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/a11y')]
 ```
-```
+
+````
 
 - [ ] **Step 5: Replace the "MDX rules" section**
 
@@ -1506,7 +1567,7 @@ on [`eslint-plugin-mdx`](https://github.com/mdx-js/eslint-mdx)).
 
 ```sh
 yarn add -D eslint-plugin-mdx@^1.16.0
-```
+````
 
 2. Enable these rules by adding the MDX config to the `extends` array in your ESLint config.
 
@@ -1515,7 +1576,8 @@ yarn add -D eslint-plugin-mdx@^1.16.0
   "extends": ["fluxuator", "fluxuator/jest", "fluxuator/mdx"]
 }
 ```
-```
+
+````
 with:
 ```markdown
 ## MDX rules
@@ -1527,7 +1589,7 @@ on [`eslint-plugin-mdx`](https://github.com/mdx-js/eslint-mdx)).
 
 ```sh
 pnpm add -D eslint-plugin-mdx@^3.0.0
-```
+````
 
 2. Enable these rules by spreading the MDX config into your ESLint config array.
 
@@ -1538,14 +1600,15 @@ module.exports = [
   ...require('eslint-config-fluxuator/mdx'),
 ]
 ```
-```
+
+````
 
 - [ ] **Step 6: Commit**
 
 ```bash
 git add README.md
 git commit -m "docs: rewrite README for flat config consumption"
-```
+````
 
 ---
 
