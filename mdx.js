@@ -1,8 +1,8 @@
-module.exports = {
-  overrides: [
-    {
-      files: ['*.mdx'],
-      extends: 'plugin:mdx/recommended',
-    },
-  ],
-}
+const mdx = require('eslint-plugin-mdx');
+
+module.exports = [
+  {
+    ...mdx.flat,
+    files: ['*.mdx'],
+  },
+];
