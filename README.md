@@ -5,6 +5,19 @@ This package includes the shareable [ESLint](https://eslint.org) configuration t
 It was inspired by https://github.com/airbnb/javascript and https://github.com/facebook/create-react-app but less
 opinionated.
 
+## Migrating from v1
+
+This release migrates the config to ESLint v10's flat config and brings a few breaking changes:
+
+- The `import/*` rule keys are now `import-x/*`. Any custom `rules: { 'import/some-rule': ... }` override in your own
+  config silently stops applying and must be renamed to `import-x/some-rule`.
+- Four `react/*` rules (`jsx-curly-spacing`, `jsx-equals-spacing`, `jsx-tag-spacing`, `jsx-filename-extension`) are
+  now force-disabled due to an upstream `eslint-plugin-react` incompatibility with ESLint v10 (no fix available yet)
+  and cannot be re-enabled without crashing.
+- Flat config only — ESLint v10 doesn't support `.eslintrc` at all, so you'll need to migrate your own config to
+  `eslint.config.js` too. See ESLint's own
+  [migration guide](https://eslint.org/docs/latest/use/configure/migration-guide).
+
 ## Installation (React app)
 
 NOTE: You can also create it in your home directory to enable it globally for all projects.
@@ -14,7 +27,11 @@ NOTE: You can also create it in your home directory to enable it globally for al
 1. Install this package and ESLint
 
 ```sh
-pnpm add -D eslint-config-fluxuator eslint@^9.0.0
+pnpm add -D eslint-config-fluxuator \
+            eslint@^9.0.0 || ^10.0.0 \
+              eslint-plugin-react@^7.37.0 eslint-plugin-react-hooks@^7.0.0 \
+            typescript@^5 \
+              @typescript-eslint/eslint-plugin@^8 @typescript-eslint/parser@^8
 ```
 
 2. Create a file named `eslint.config.js` in the root folder of your project:
@@ -36,7 +53,11 @@ module.exports = [
 ]
 ```
 
-4. If you are using the new JSX transform from React 17+, spread `"fluxuator/jsx-runtime"` into the array too, to disable the relevant rules.
+4. If you are using the new JSX transform from React 17+, spread `eslint-config-fluxuator/jsx-runtime` into the array too, to disable the relevant rules.
+
+```js
+module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/jsx-runtime')]
+```
 
 5. Add a script to your package.json to check your project with ESLint.
 
@@ -70,7 +91,7 @@ _NOTE: Requires [Prettier](#prettier) to be installed additionally_
 
 ```sh
 pnpm add -D eslint-config-fluxuator \
-            eslint@^9.0.0 \
+            eslint@^9.0.0 || ^10.0.0 \
             typescript@^5 \
               @typescript-eslint/eslint-plugin@^8 @typescript-eslint/parser@^8
 ```

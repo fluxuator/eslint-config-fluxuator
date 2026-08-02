@@ -19,7 +19,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "commit": "git-cz",
-    "eslint": "eslint --ext .js,.jsx,.ts,.tsx,.mdx",
+    "eslint": "eslint",
     "lint": "pnpm eslint .",
     "prettier": "prettier --ignore-unknown",
     "format:check": "pnpm prettier --check .",

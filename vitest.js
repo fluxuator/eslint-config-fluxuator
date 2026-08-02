@@ -9,6 +9,7 @@ module.exports = [
     plugins: {
       vitest,
     },
+    languageOptions: vitest.configs.env.languageOptions,
     rules: {
       ...vitest.configs.recommended.rules,
       ...require('./rules/vitest'),

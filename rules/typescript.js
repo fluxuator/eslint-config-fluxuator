@@ -145,6 +145,11 @@ module.exports = {
   // Disabled in favour of extended rule `@typescript-eslint/no-empty-function`
   'no-empty-function': 'off',
 
+  // `@typescript-eslint/indent` was removed (no longer exists in the plugin); core `indent`
+  // has no model for TypeScript-specific syntax (decorators, conditional types, `satisfies`).
+  // Disabled in favour of Prettier handling formatting.
+  indent: 'off',
+
   // Enforce consistent usage of type imports
   // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/consistent-type-imports.md
   '@typescript-eslint/consistent-type-imports': [

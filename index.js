@@ -25,7 +25,7 @@ const reactVersion = detectReactVersion()
 
 module.exports = [
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['**/*.{js,cjs,mjs,jsx,ts,mts,cts,tsx}'],
     plugins: {
       'import-x': importX,
       react,
@@ -48,7 +48,7 @@ module.exports = [
       },
     },
     settings: {
-      react: reactVersion ? { version: reactVersion } : {},
+      react: { version: reactVersion || '999.999.999' },
     },
     rules: {
       ...require('./rules/node'),
@@ -65,6 +65,7 @@ module.exports = [
         ecmaFeatures: {
           jsx: true,
         },
+        warnOnUnsupportedTypeScriptVersion: true,
       },
     },
     plugins: {

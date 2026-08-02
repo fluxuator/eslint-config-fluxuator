@@ -29,6 +29,9 @@ module.exports = [
       parser: tsParser,
       ecmaVersion: 2021,
       sourceType: 'module',
+      parserOptions: {
+        warnOnUnsupportedTypeScriptVersion: true,
+      },
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
