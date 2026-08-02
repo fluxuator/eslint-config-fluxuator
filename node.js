@@ -6,6 +6,7 @@ const tsPlugin = require('@typescript-eslint/eslint-plugin')
 
 module.exports = [
   {
+    files: ['**/*.{js,cjs,mjs,ts,mts,cts}'],
     plugins: {
       'import-x': importX,
       'unused-imports': unusedImports,
@@ -24,7 +25,7 @@ module.exports = [
     rules: require('./rules/node'),
   },
   {
-    files: ['**/*.ts'],
+    files: ['**/*.{ts,mts,cts}'],
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 2021,

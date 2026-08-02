@@ -56,7 +56,7 @@ module.exports = [
     },
   },
   {
-    files: ['**/*.ts?(x)'],
+    files: ['**/*.{ts,mts,cts,tsx}'],
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 2021,
