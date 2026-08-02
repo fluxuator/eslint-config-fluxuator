@@ -26,13 +26,17 @@
     "format:fix": "pnpm prettier --write .",
     "prepare": "husky",
     "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "postpublish": "pinst --enable",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage"
   },
   "dependencies": {
     "confusing-browser-globals": "^1.0.11",
     "eslint-plugin-import-x": "^4.17.1",
     "eslint-plugin-unused-imports": "^4.4.1",
-    "globals": "^17.8.0"
+    "globals": "^17.8.0",
+    "lodash.defaultsdeep": "^4.6.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "paths": {
+      "#*": ["src/*"]
+    }
+  },
+  "include": ["empty.ts"]
+}
