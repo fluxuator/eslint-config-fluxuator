@@ -5,60 +5,79 @@
  * NOTE! When adding rules here, you need to make sure they are compatible with
  * `typescript-eslint`, as some rules such as `no-array-constructor` aren't compatible.
  */
-module.exports = {
-  root: true,
+const globals = require('globals');
+const importX = require('eslint-plugin-import-x');
+const react = require('eslint-plugin-react');
+const reactHooks = require('eslint-plugin-react-hooks');
+const unusedImports = require('eslint-plugin-unused-imports');
+const tsParser = require('@typescript-eslint/parser');
+const tsPlugin = require('@typescript-eslint/eslint-plugin');
 
-  parser: '@babel/eslint-parser',
+function detectReactVersion() {
+  try {
+    return require(require.resolve('react/package.json', { paths: [process.cwd()] })).version;
+  } catch {
+    return undefined;
+  }
+}
 
-  plugins: ['import', 'react', 'react-hooks', 'unused-imports'],
+const reactVersion = detectReactVersion();
 
-  env: {
-    browser: true,
-    commonjs: true,
-    es6: true,
-    jest: true,
-    node: true,
-  },
-
-  parserOptions: {
-    sourceType: 'module',
-    requireConfigFile: false,
-    babelOptions: {
-      presets: ['@babel/preset-react'],
+module.exports = [
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      'import-x': importX,
+      react,
+      'react-hooks': reactHooks,
+      'unused-imports': unusedImports,
     },
-  },
-
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
-
-  rules: Object.assign({}, require('./rules/node'), require('./rules/react')),
-
-  overrides: [
-    {
-      files: ['**/*.ts?(x)'],
-      parser: '@typescript-eslint/parser',
-      plugins: ['@typescript-eslint'],
+    languageOptions: {
+      sourceType: 'module',
       parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
         ecmaFeatures: {
           jsx: true,
         },
-        // typescript-eslint specific options
-        warnOnUnsupportedTypeScriptVersion: true,
       },
-      // If adding a typescript-eslint version of an existing ESLint rule,
-      // make sure to disable the ESLint rule here.
-      rules: require('./rules/typescript'),
-    },
-    {
-      files: ['**/*.d.ts'],
-      rules: {
-        'unused-imports/no-unused-vars': 'off',
+      globals: {
+        ...globals.browser,
+        ...globals.commonjs,
+        ...globals.es2021,
+        ...globals.jest,
+        ...globals.node,
       },
     },
-  ],
-}
+    settings: {
+      react: reactVersion ? { version: reactVersion } : {},
+    },
+    rules: {
+      ...require('./rules/node'),
+      ...require('./rules/react'),
+    },
+  },
+  {
+    files: ['**/*.ts?(x)'],
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 2021,
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    // If adding a typescript-eslint version of an existing ESLint rule,
+    // make sure to disable the ESLint rule here.
+    rules: require('./rules/typescript'),
+  },
+  {
+    files: ['**/*.d.ts'],
+    rules: {
+      'unused-imports/no-unused-vars': 'off',
+    },
+  },
+];
