@@ -1,8 +1,8 @@
-const globals = require('globals')
-const importX = require('eslint-plugin-import-x')
-const unusedImports = require('eslint-plugin-unused-imports')
-const tsParser = require('@typescript-eslint/parser')
-const tsPlugin = require('@typescript-eslint/eslint-plugin')
+const globals = require('globals');
+const importX = require('eslint-plugin-import-x');
+const unusedImports = require('eslint-plugin-unused-imports');
+const tsParser = require('@typescript-eslint/parser');
+const tsPlugin = require('@typescript-eslint/eslint-plugin');
 
 module.exports = [
   {
@@ -12,7 +12,7 @@ module.exports = [
     },
     languageOptions: {
       sourceType: 'module',
-      ecmaVersion: 2018,
+      ecmaVersion: 2021,
       globals: {
         ...globals.browser,
         ...globals.commonjs,
@@ -37,4 +37,4 @@ module.exports = [
     // make sure to disable the ESLint rule here.
     rules: require('./rules/typescript'),
   },
-]
+];
