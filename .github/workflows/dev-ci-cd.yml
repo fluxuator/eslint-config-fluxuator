@@ -44,7 +44,6 @@ jobs:
         run: pnpm audit
 
       - name: Install dependencies
-        if: steps.cache-deps.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Lint
