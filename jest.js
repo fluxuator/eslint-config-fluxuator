@@ -1,6 +1,6 @@
-const jest = require('eslint-plugin-jest');
+const jest = require('eslint-plugin-jest')
 
-const TEST_FILES = ['**/__tests__/**/*', '**/*.{spec,test}.*'];
+const TEST_FILES = ['**/__tests__/**/*', '**/*.{spec,test}.*']
 
 module.exports = [
   {
@@ -12,4 +12,4 @@ module.exports = [
       ...require('./rules/jest'),
     },
   },
-];
+]

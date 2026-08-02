@@ -1,1 +1,1 @@
-module.exports = [...require('./jest'), ...require('./testing-library')];
+module.exports = [...require('./jest'), ...require('./testing-library')]

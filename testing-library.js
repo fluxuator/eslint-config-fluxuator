@@ -1,7 +1,7 @@
 // https://github.com/testing-library/eslint-plugin-testing-library
-const testingLibrary = require('eslint-plugin-testing-library');
+const testingLibrary = require('eslint-plugin-testing-library')
 
-const TEST_FILES = ['**/__tests__/**/*', '**/*.{spec,test}.*'];
+const TEST_FILES = ['**/__tests__/**/*', '**/*.{spec,test}.*']
 
 module.exports = [
   {
@@ -12,4 +12,4 @@ module.exports = [
       ...require('./rules/testing-library'),
     },
   },
-];
+]

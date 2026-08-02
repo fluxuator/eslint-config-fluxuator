@@ -1,4 +1,4 @@
-const jsxA11y = require('eslint-plugin-jsx-a11y');
+const jsxA11y = require('eslint-plugin-jsx-a11y')
 
 module.exports = [
   {
@@ -10,4 +10,4 @@ module.exports = [
       ...require('./rules/a11y'),
     },
   },
-];
+]

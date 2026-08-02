@@ -5,23 +5,23 @@
  * NOTE! When adding rules here, you need to make sure they are compatible with
  * `typescript-eslint`, as some rules such as `no-array-constructor` aren't compatible.
  */
-const globals = require('globals');
-const importX = require('eslint-plugin-import-x');
-const react = require('eslint-plugin-react');
-const reactHooks = require('eslint-plugin-react-hooks');
-const unusedImports = require('eslint-plugin-unused-imports');
-const tsParser = require('@typescript-eslint/parser');
-const tsPlugin = require('@typescript-eslint/eslint-plugin');
+const globals = require('globals')
+const importX = require('eslint-plugin-import-x')
+const react = require('eslint-plugin-react')
+const reactHooks = require('eslint-plugin-react-hooks')
+const unusedImports = require('eslint-plugin-unused-imports')
+const tsParser = require('@typescript-eslint/parser')
+const tsPlugin = require('@typescript-eslint/eslint-plugin')
 
 function detectReactVersion() {
   try {
-    return require(require.resolve('react/package.json', { paths: [process.cwd()] })).version;
+    return require(require.resolve('react/package.json', { paths: [process.cwd()] })).version
   } catch {
-    return undefined;
+    return undefined
   }
 }
 
-const reactVersion = detectReactVersion();
+const reactVersion = detectReactVersion()
 
 module.exports = [
   {
@@ -80,4 +80,4 @@ module.exports = [
       'unused-imports/no-unused-vars': 'off',
     },
   },
-];
+]

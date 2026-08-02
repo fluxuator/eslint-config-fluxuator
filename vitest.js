@@ -1,7 +1,7 @@
 // https://github.com/vitest-dev/eslint-plugin-vitest
-const vitest = require('@vitest/eslint-plugin');
+const vitest = require('@vitest/eslint-plugin')
 
-const TEST_FILES = ['**/__tests__/**/*', '**/*.{spec,test}.*'];
+const TEST_FILES = ['**/__tests__/**/*', '**/*.{spec,test}.*']
 
 module.exports = [
   {
@@ -14,4 +14,4 @@ module.exports = [
       ...require('./rules/vitest'),
     },
   },
-];
+]

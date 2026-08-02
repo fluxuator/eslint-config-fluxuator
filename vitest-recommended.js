@@ -1,1 +1,1 @@
-module.exports = [...require('./vitest'), ...require('./testing-library')];
+module.exports = [...require('./vitest'), ...require('./testing-library')]
