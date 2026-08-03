@@ -1,1 +1,1 @@
-module.exports = [...require('./node-recommended')]
+module.exports = [...require('./lib/node-recommended')]
