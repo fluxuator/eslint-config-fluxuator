@@ -51,8 +51,8 @@ module.exports = [
       react: { version: reactVersion || '999.999.999' },
     },
     rules: {
-      ...require('./rules/node'),
-      ...require('./rules/react'),
+      ...require('./lib/rules/node'),
+      ...require('./lib/rules/react'),
     },
   },
   {
@@ -73,7 +73,7 @@ module.exports = [
     },
     // If adding a typescript-eslint version of an existing ESLint rule,
     // make sure to disable the ESLint rule here.
-    rules: require('./rules/typescript'),
+    rules: require('./lib/rules/typescript'),
   },
   {
     files: ['**/*.d.ts'],

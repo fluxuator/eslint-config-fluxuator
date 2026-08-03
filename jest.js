@@ -9,7 +9,7 @@ module.exports = [
     languageOptions: jest.configs['flat/recommended'].languageOptions,
     rules: {
       ...jest.configs['flat/recommended'].rules,
-      ...require('./rules/jest'),
+      ...require('./lib/rules/jest'),
     },
   },
 ]

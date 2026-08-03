@@ -245,5 +245,5 @@ module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-conf
 
 2. Rules:
 
-- [`fluxuator/no-class-comparison`](plugins/rules/no-class-comparison.md) — enabled by default. Disallows comparing class instances with comparison operators and suggests alternative ways to compare them (e.g. an `.equals()` method).
-- [`fluxuator/restrict-import-paths`](plugins/rules/restrict-import-paths.md) — registered but **not** enabled by default. Restricts import paths to a certain depth and suggests the aliased path instead (or vice versa), resolving path aliases from your project's `tsconfig.json`. Requires per-project configuration (`useTsConfig`, `rootDir`, `allowedPathDepth`) to be useful — see the linked doc before enabling it.
+- [`fluxuator/no-class-comparison`](lib/plugins/rules/no-class-comparison.md) — enabled by default. Disallows comparing class instances with comparison operators and suggests alternative ways to compare them (e.g. an `.equals()` method).
+- [`fluxuator/restrict-import-paths`](lib/plugins/rules/restrict-import-paths.md) — registered but **not** enabled by default. Restricts import paths to a certain depth and suggests the aliased path instead (or vice versa), resolving path aliases from your project's `tsconfig.json`. Requires per-project configuration (`useTsConfig`, `rootDir`, `allowedPathDepth`) to be useful — see the linked doc before enabling it.

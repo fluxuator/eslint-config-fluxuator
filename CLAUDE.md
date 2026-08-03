@@ -30,8 +30,8 @@ Every top-level file (`index.js`, `node.js`, `node-recommended.js`, `react-recom
 `jest-recommended.js`, `vitest.js`, `vitest-recommended.js`, `testing-library.js`, `prettier.js`, `a11y.js`,
 `mdx.js`, `jsx-runtime.js`) is a small ESLint config object, published as a separate entry point
 (e.g. consumers do `extends: ["fluxuator/react-recommended"]`). Actual rule bodies do **not** live in these
-files — they live in `rules/*.js` and get pulled in via `require('./rules/<name>')`. When changing a rule,
-edit the file in `rules/`, not the top-level composing file.
+files — they live in `lib/rules/*.js` and get pulled in via `require('./rules/<name>')`. When changing a rule,
+edit the file in `lib/rules/`, not the top-level composing file.
 
 Composition happens two ways:
 
@@ -47,19 +47,19 @@ Composition happens two ways:
 ### Two base tracks: browser/React vs Node
 
 - `index.js` is the **base React/browser** config: parser is `@babel/eslint-parser` with
-  `@babel/preset-react`, combines `rules/node.js` + `rules/react.js`, and adds a TS override using
-  `@typescript-eslint/parser` + `rules/typescript.js`.
+  `@babel/preset-react`, combines `lib/rules/node.js` + `lib/rules/react.js`, and adds a TS override using
+  `@typescript-eslint/parser` + `lib/rules/typescript.js`.
 - `node.js` is the **Node-only** config: no React plugin, no JSX, same TS override pattern layered on top.
 - `*-recommended.js` variants (`react-recommended.js`, `node-recommended.js`) are convenience bundles that
   add Prettier (and for React, the `jsx-runtime` override for React 17+ JSX transform) on top of the base.
 
-### Rule-file conventions (`rules/`)
+### Rule-file conventions (`lib/rules/`)
 
-- `rules/typescript.js`: when adding a `@typescript-eslint` rule that shadows a core ESLint rule, the core
+- `lib/rules/typescript.js`: when adding a `@typescript-eslint` rule that shadows a core ESLint rule, the core
   rule must be turned off in the same file (documented inline in `index.js`) — some rules like
   `no-array-constructor` are not compatible between the two and need care.
-- `rules/jest.js` + `rules/jest-formatting.js` are combined only for Jest projects; `rules/vitest.js` +
-  `rules/jest-formatting.js` are combined only for Vitest projects (`jest-formatting` rules apply to both
+- `lib/rules/jest.js` + `lib/rules/jest-formatting.js` are combined only for Jest projects; `lib/rules/vitest.js` +
+  `lib/rules/jest-formatting.js` are combined only for Vitest projects (`jest-formatting` rules apply to both
   since they're framework-agnostic test-block style rules).
 - Optional add-ons (`a11y.js`, `mdx.js`, `testing-library.js`) are opt-in — consumers add them explicitly to
   their `extends` array on top of a base config; they are never pulled in automatically.

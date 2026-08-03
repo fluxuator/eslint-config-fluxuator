@@ -9,7 +9,7 @@ module.exports = [
     plugins: testingLibrary.configs['flat/react'].plugins,
     rules: {
       ...testingLibrary.configs['flat/react'].rules,
-      ...require('./rules/testing-library'),
+      ...require('./lib/rules/testing-library'),
     },
   },
 ]

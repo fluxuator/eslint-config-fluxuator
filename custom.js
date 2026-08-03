@@ -1,4 +1,4 @@
-const fluxuatorPlugin = require('./plugins/fluxuator.plugin')
+const fluxuatorPlugin = require('./lib/plugins/fluxuator.plugin')
 
 module.exports = [
   {

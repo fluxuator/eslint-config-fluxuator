@@ -22,7 +22,7 @@ module.exports = [
         ...globals.node,
       },
     },
-    rules: require('./rules/node'),
+    rules: require('./lib/rules/node'),
   },
   {
     files: ['**/*.{ts,mts,cts}'],
@@ -39,6 +39,6 @@ module.exports = [
     },
     // If adding a typescript-eslint version of an existing ESLint rule,
     // make sure to disable the ESLint rule here.
-    rules: require('./rules/typescript'),
+    rules: require('./lib/rules/typescript'),
   },
 ]

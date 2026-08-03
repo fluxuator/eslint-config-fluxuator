@@ -12,7 +12,7 @@ module.exports = [
     languageOptions: vitest.configs.env.languageOptions,
     rules: {
       ...vitest.configs.recommended.rules,
-      ...require('./rules/vitest'),
+      ...require('./lib/rules/vitest'),
     },
   },
 ]
