@@ -18,7 +18,6 @@ config (no `.eslintrc`), so every published entry point is a plain array of flat
   suites for the custom plugin's rules — see `vitest.config.js`'s `test.projects` split)
 - Format check: `pnpm format:check`
 - Format fix: `pnpm format:fix`
-- Commit via commitizen (conventional commits, required by commit-msg hook): `pnpm commit`
 - `make lint` / `make lint-staged` mirror the above pnpm scripts (see `Makefile`)
 
 Node >= 22 required (`.nvmrc` pins v24 for local dev).

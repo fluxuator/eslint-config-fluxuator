@@ -36,8 +36,6 @@
     "./vitest-recommended": "./lib/vitest-recommended.js"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "commit": "git-cz",
     "eslint": "eslint",
     "lint": "pnpm eslint .",
     "prettier": "prettier --ignore-unknown",
@@ -66,7 +64,6 @@
     "@typescript-eslint/eslint-plugin": "8.65.0",
     "@typescript-eslint/parser": "8.65.0",
     "@vitest/eslint-plugin": "1.6.24",
-    "commitizen": "4.3.2",
     "commitlint": "21.2.1",
     "eslint": "10.8.0",
     "eslint-config-prettier": "10.1.8",
@@ -142,11 +139,6 @@
     },
     "typescript": {
       "optional": true
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
     }
   },
   "release": {
