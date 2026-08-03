@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": "./src",
+    "paths": {
+      "#app/*": ["app/*"],
+      "#testing-utils": ["testing-utils"],
+      "#testing-utils/*": ["testing-utils/*"]
+    }
+  },
+  "include": ["empty.ts"]
+}

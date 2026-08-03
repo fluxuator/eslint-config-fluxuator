@@ -1,0 +1,10 @@
+# Saved dependencies will be configured with an exact version rather than using npm's default semver range operator
+saveExact: true
+
+publicHoistPattern:
+  - '@commitlint*'
+  - commitlint
+
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true

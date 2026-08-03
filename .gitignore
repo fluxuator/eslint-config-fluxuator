@@ -1,5 +1,15 @@
-.idea/
 .cache/
-.DS_Store
 node_modules/
 *.log*
+
+# Editor directories and files
+.idea
+.DS_Store
+
+# AI tools
+.claude/*.local.*
+.claude/.cc-writes
+.claude/worktrees
+*/**/.claude
+.superpowers
+docs/superpowers

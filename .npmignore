@@ -1,7 +1,5 @@
 *
-!*.js
-commitlint.config.js
-!rules
+!lib
 !README.md
 !package.json
 !pnpm-lock.yaml

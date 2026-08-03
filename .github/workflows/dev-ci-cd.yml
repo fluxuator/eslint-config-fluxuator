@@ -21,7 +21,7 @@ jobs:
         id: node-setup
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
@@ -44,11 +44,13 @@ jobs:
         run: pnpm audit
 
       - name: Install dependencies
-        if: steps.cache-deps.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Lint
         run: pnpm lint
+
+      - name: Test
+        run: pnpm test
 
   dependabot-merge:
     name: Dependabot auto-merge
