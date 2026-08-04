@@ -1,1 +1,1 @@
-module.exports = [...require('./lib/node-recommended')]
+module.exports = [...require('./lib/node'), ...require('./lib/vitest')]
