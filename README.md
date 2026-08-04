@@ -17,7 +17,7 @@ NOTE: You can also create it in your home directory to enable it globally for al
 pnpm add -D eslint-config-fluxuator \
             "eslint@^9.0.0 || ^10.0.0" \
               eslint-plugin-react@^7.37.0 eslint-plugin-react-hooks@^7.0.0 \
-            typescript@^5 \
+            typescript@^6 \
               typescript-eslint@^8
 ```
 
@@ -61,7 +61,7 @@ _NOTE: Requires [Prettier](#prettier) to be installed additionally_
 ```sh
 pnpm add -D eslint-config-fluxuator \
             "eslint@^9.0.0 || ^10.0.0" \
-            typescript@^5 \
+            typescript@^6 \
               typescript-eslint@^8
 ```
 
