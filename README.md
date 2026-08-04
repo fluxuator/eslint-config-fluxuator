@@ -5,6 +5,28 @@ This package includes the shareable [ESLint](https://eslint.org) configuration t
 It was inspired by https://github.com/airbnb/javascript and https://github.com/facebook/create-react-app but less
 opinionated.
 
+## Migrating from v2
+
+This release simplifies the config's public API and brings a few more breaking changes:
+
+- `.`, `./node` and `./react` now bundle Prettier and the `fluxuator/no-class-comparison` custom rule directly — the
+  `./custom`, `./node-recommended`, `./jest-recommended`, `./jsx-runtime` and `./react-recommended` exports are gone.
+  Use `./node` or `./react` (or the root export, an alias for `./react`) directly instead.
+- `./react` now always assumes the React 17+ JSX runtime. If you're still on the classic runtime, this config is no
+  longer for you.
+- `./testing-library` is renamed to `./react-testing-library`.
+- `./jest` is now a function taking your installed Jest version, instead of a plain config array:
+  `...require('eslint-config-fluxuator/jest')(require('jest/package.json').version)`.
+- MDX support (`./mdx`) has been dropped.
+- The TypeScript peer dependencies changed from separate `@typescript-eslint/parser` +
+  `@typescript-eslint/eslint-plugin` to the unified `typescript-eslint` package, and TS files now also get
+  `@eslint/js` + `typescript-eslint`'s own `recommended` rules as a baseline underneath this config's rule overrides —
+  expect some new lint errors surfaced on your first upgrade.
+- Formatting rules `indent`/`semi`/member-delimiter-style now come from `@stylistic/eslint-plugin` instead of core
+  ESLint rules (which are frozen/deprecated upstream).
+- Import sorting is now enforced via `eslint-plugin-simple-import-sort` (`import-x/order` and core `sort-imports`
+  are disabled in favor of it).
+
 ## Migrating from v1
 
 This release migrates the config to ESLint v10's flat config and brings a few breaking changes:
@@ -13,7 +35,8 @@ This release migrates the config to ESLint v10's flat config and brings a few br
   config silently stops applying and must be renamed to `import-x/some-rule`.
 - Four `react/*` rules (`jsx-curly-spacing`, `jsx-equals-spacing`, `jsx-tag-spacing`, `jsx-filename-extension`) are
   now force-disabled due to an upstream `eslint-plugin-react` incompatibility with ESLint v10 (no fix available yet)
-  and cannot be re-enabled without crashing.
+  and cannot be re-enabled without crashing. The same applies to `settings.react.version: 'detect'` — this config
+  resolves your installed React version itself instead, to avoid the same crash.
 - Flat config only — ESLint v10 doesn't support `.eslintrc` at all, so you'll need to migrate your own config to
   `eslint.config.js` too. See ESLint's own
   [migration guide](https://eslint.org/docs/latest/use/configure/migration-guide).
@@ -31,10 +54,11 @@ pnpm add -D eslint-config-fluxuator \
             "eslint@^9.0.0 || ^10.0.0" \
               eslint-plugin-react@^7.37.0 eslint-plugin-react-hooks@^7.0.0 \
             typescript@^5 \
-              @typescript-eslint/eslint-plugin@^8 @typescript-eslint/parser@^8
+              typescript-eslint@^8
 ```
 
-2. Create a file named `eslint.config.js` in the root folder of your project:
+2. Create a file named `eslint.config.js` in the root folder of your project. `.` bundles the Node, React and
+   Prettier rules together — it's an alias for `./react`.
 
 ```js
 module.exports = [...require('eslint-config-fluxuator')]
@@ -53,13 +77,7 @@ module.exports = [
 ]
 ```
 
-4. If you are using the new JSX transform from React 17+, spread `eslint-config-fluxuator/jsx-runtime` into the array too, to disable the relevant rules.
-
-```js
-module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/jsx-runtime')]
-```
-
-5. Add a script to your package.json to check your project with ESLint.
+4. Add a script to your package.json to check your project with ESLint.
 
 ```json
 {
@@ -68,19 +86,6 @@ module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-conf
     "lint:fix": "pnpm lint --fix --max-warnings 0"
   }
 }
-```
-
-### React App (Recommended)
-
-You can also enable all recommended rules for your React App with only one config that combines all recommended rules
-including Prettier, but without testing libraries (should be installed separately)
-
-```js
-module.exports = [
-  ...require('eslint-config-fluxuator/react-recommended'),
-  // ...require('eslint-config-fluxuator/vitest-recommended'),
-  // ...require('eslint-config-fluxuator/jest-recommended'),
-]
 ```
 
 _NOTE: Requires [Prettier](#prettier) to be installed additionally_
@@ -93,7 +98,7 @@ _NOTE: Requires [Prettier](#prettier) to be installed additionally_
 pnpm add -D eslint-config-fluxuator \
             "eslint@^9.0.0 || ^10.0.0" \
             typescript@^5 \
-              @typescript-eslint/eslint-plugin@^8 @typescript-eslint/parser@^8
+              typescript-eslint@^8
 ```
 
 2. Create a file named `eslint.config.js` in the root folder of your project:
@@ -115,15 +120,6 @@ module.exports = [
 ]
 ```
 
-### NodeJS App (Recommended)
-
-You can also enable all recommended rules for your NodeJS App with only one config that combines all recommended rules
-including Prettier, but without testing libraries (should be installed separately)
-
-```js
-module.exports = [...require('eslint-config-fluxuator/node-recommended'), ...require('eslint-config-fluxuator/jest')]
-```
-
 _NOTE: Requires [Prettier](#prettier) to be installed additionally_
 
 That's it!
@@ -135,16 +131,20 @@ That's it!
 This config also ships with optional Jest rules for ESLint (based
 on [`eslint-plugin-jest`](https://github.com/jest-community/eslint-plugin-jest))
 
-1. Install the ESLint plugin for Jest and Testing Library (if you don't already have them installed).
+1. Install the ESLint plugin for Jest (if you don't already have it installed).
 
 ```sh
 pnpm add -D jest eslint-plugin-jest
 ```
 
-2. Enable these rules by spreading the Jest config into your ESLint config array.
+2. Enable these rules by spreading the Jest config into your ESLint config array. `./jest` is a function that takes
+   your installed Jest version, used by `eslint-plugin-jest`'s version-aware rules.
 
 ```js
-module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/jest')]
+module.exports = [
+  ...require('eslint-config-fluxuator'),
+  ...require('eslint-config-fluxuator/jest')(require('jest/package.json').version),
+]
 ```
 
 ### Vitest
@@ -165,7 +165,7 @@ pnpm add -D vitest @vitest/eslint-plugin
 module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/vitest')]
 ```
 
-### Testing Library
+### React Testing Library
 
 You can also charge your ESLint with additional power
 of [`eslint-plugin-testing-library`](https://github.com/testing-library/eslint-plugin-testing-library)) rules.
@@ -180,7 +180,7 @@ and enable additional rules
 module.exports = [
   ...require('eslint-config-fluxuator'),
   ...require('eslint-config-fluxuator/vitest'),
-  ...require('eslint-config-fluxuator/testing-library'),
+  ...require('eslint-config-fluxuator/react-testing-library'),
 ]
 ```
 
@@ -212,38 +212,9 @@ If you want to enable even more accessibility rules, spread the a11y config into
 module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/a11y')]
 ```
 
-## MDX rules
-
-This config also ships with optional [MDX](https://github.com/mdx-js/mdx) rules for ESLint (based
-on [`eslint-plugin-mdx`](https://github.com/mdx-js/eslint-mdx)).
-
-1. Install the ESLint plugin for MDX (if you don't already have it installed).
-
-```sh
-pnpm add -D eslint-plugin-mdx@^3.0.0
-```
-
-2. Enable these rules by spreading the MDX config into your ESLint config array.
-
-```js
-module.exports = [
-  ...require('eslint-config-fluxuator'),
-  ...require('eslint-config-fluxuator/jest'),
-  ...require('eslint-config-fluxuator/mdx'),
-]
-```
-
 ## Custom rules
 
 This config also ships a small set of custom rules, in addition to the ones provided by third-party plugins.
 
-1. Enable them by spreading the custom config into your ESLint config array.
-
-```js
-module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/custom')]
-```
-
-2. Rules:
-
-- [`fluxuator/no-class-comparison`](lib/plugins/rules/no-class-comparison.md) — enabled by default. Disallows comparing class instances with comparison operators and suggests alternative ways to compare them (e.g. an `.equals()` method).
-- [`fluxuator/restrict-import-paths`](lib/plugins/rules/restrict-import-paths.md) — registered but **not** enabled by default. Restricts import paths to a certain depth and suggests the aliased path instead (or vice versa), resolving path aliases from your project's `tsconfig.json`. Requires per-project configuration (`useTsConfig`, `rootDir`, `allowedPathDepth`) to be useful — see the linked doc before enabling it.
+- [`fluxuator/no-class-comparison`](lib/plugins/rules/no-class-comparison.md) — enabled by default in `.`, `./node` and `./react`. Disallows comparing class instances with comparison operators and suggests alternative ways to compare them (e.g. an `.equals()` method).
+- [`fluxuator/restrict-import-paths`](lib/plugins/rules/restrict-import-paths.md) — registered but **not** enabled by default, and not currently exposed via a standalone export. Restricts import paths to a certain depth and suggests the aliased path instead (or vice versa), resolving path aliases from your project's `tsconfig.json`.
