@@ -5,42 +5,6 @@ This package includes the shareable [ESLint](https://eslint.org) configuration t
 It was inspired by https://github.com/airbnb/javascript and https://github.com/facebook/create-react-app but less
 opinionated.
 
-## Migrating from v2
-
-This release simplifies the config's public API and brings a few more breaking changes:
-
-- `.`, `./node` and `./react` now bundle Prettier and the `fluxuator/no-class-comparison` custom rule directly — the
-  `./custom`, `./node-recommended`, `./jest-recommended`, `./jsx-runtime` and `./react-recommended` exports are gone.
-  Use `./node` or `./react` (or the root export, an alias for `./react`) directly instead.
-- `./react` now always assumes the React 17+ JSX runtime. If you're still on the classic runtime, this config is no
-  longer for you.
-- `./testing-library` is renamed to `./react-testing-library`.
-- `./jest` is now a function taking your installed Jest version, instead of a plain config array:
-  `...require('eslint-config-fluxuator/jest')(require('jest/package.json').version)`.
-- MDX support (`./mdx`) has been dropped.
-- The TypeScript peer dependencies changed from separate `@typescript-eslint/parser` +
-  `@typescript-eslint/eslint-plugin` to the unified `typescript-eslint` package, and TS files now also get
-  `@eslint/js` + `typescript-eslint`'s own `recommended` rules as a baseline underneath this config's rule overrides —
-  expect some new lint errors surfaced on your first upgrade.
-- Formatting rules `indent`/`semi`/member-delimiter-style now come from `@stylistic/eslint-plugin` instead of core
-  ESLint rules (which are frozen/deprecated upstream).
-- Import sorting is now enforced via `eslint-plugin-simple-import-sort` (`import-x/order` and core `sort-imports`
-  are disabled in favor of it).
-
-## Migrating from v1
-
-This release migrates the config to ESLint v10's flat config and brings a few breaking changes:
-
-- The `import/*` rule keys are now `import-x/*`. Any custom `rules: { 'import/some-rule': ... }` override in your own
-  config silently stops applying and must be renamed to `import-x/some-rule`.
-- Four `react/*` rules (`jsx-curly-spacing`, `jsx-equals-spacing`, `jsx-tag-spacing`, `jsx-filename-extension`) are
-  now force-disabled due to an upstream `eslint-plugin-react` incompatibility with ESLint v10 (no fix available yet)
-  and cannot be re-enabled without crashing. The same applies to `settings.react.version: 'detect'` — this config
-  resolves your installed React version itself instead, to avoid the same crash.
-- Flat config only — ESLint v10 doesn't support `.eslintrc` at all, so you'll need to migrate your own config to
-  `eslint.config.js` too. See ESLint's own
-  [migration guide](https://eslint.org/docs/latest/use/configure/migration-guide).
-
 ## Installation (React app)
 
 NOTE: You can also create it in your home directory to enable it globally for all projects.
