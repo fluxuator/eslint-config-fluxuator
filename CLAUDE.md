@@ -6,13 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A shareable ESLint configuration package (`eslint-config-fluxuator`, published as `fluxuator`) — not an app.
 Consumers spread these configs into their own flat `eslint.config.js` array. ESLint v10 only supports flat
-config (no `.eslintrc`), so every published entry point is a plain array of flat config objects, published from
-`lib/` via the `exports` map in `package.json`.
+config (no `.eslintrc`), so every published entry point is a plain array of flat config objects (with two
+exceptions: `./config` is an object of shared primitives, and `./jest` is a function that returns an array),
+published from `lib/` via the `exports` map in `package.json`.
 
 ## Commands
 
-- Install deps: `pnpm install` (pnpm is enforced via `preinstall: npx only-allow pnpm`; package manager pinned
-  via the `packageManager` field in `package.json`)
+- Install deps: `pnpm install` (pnpm is enforced via the `packageManager` field in `package.json`, which Corepack
+  reads to pin the exact package manager and version)
 - Lint the repo itself: `pnpm lint` (runs `pnpm eslint .`)
 - Test: `pnpm test` (all tests), `pnpm test:unit` (plain unit tests), `pnpm test:eslint` (ESLint `RuleTester`
   suites for the custom plugin's rules — see `vitest.config.js`'s `test.projects` split)

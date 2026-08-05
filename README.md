@@ -9,6 +9,9 @@ opinionated.
 
 NOTE: You can also create it in your home directory to enable it globally for all projects.
 
+NOTE: Since v[X] this package is pure ESM. Your own `eslint.config.js` needs to be loadable as an ES module —
+either add `"type": "module"` to your project's `package.json`, or name the file `eslint.config.mjs`.
+
 ### React App
 
 1. Install this package and ESLint
@@ -209,6 +212,7 @@ this config uses internally, import them from `eslint-config-fluxuator/config` i
 destructure it after importing:
 
 ```js
+import fluxuatorConfig from 'eslint-config-fluxuator'
 import configPrimitives from 'eslint-config-fluxuator/config'
 
 const { ignores, onlyTypeScriptFiles } = configPrimitives
