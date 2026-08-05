@@ -15,6 +15,7 @@
     "eslintconfig",
     "eslint-config"
   ],
+  "type": "module",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -22,6 +23,7 @@
   "exports": {
     ".": "./lib/index.js",
     "./a11y": "./lib/a11y.js",
+    "./config": "./lib/config.js",
     "./jest": "./lib/jest.js",
     "./node": "./lib/node.js",
     "./prettier": "./lib/prettier.js",

@@ -1,1 +1,3 @@
-module.exports = require('./lib/shared.config').sharedPrettierConfig
+import { sharedPrettierConfig } from './lib/shared.config.js'
+
+export default sharedPrettierConfig
