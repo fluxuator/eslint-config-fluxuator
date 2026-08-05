@@ -25,14 +25,18 @@ pnpm add -D eslint-config-fluxuator \
    Prettier rules together — it's an alias for `./react`.
 
 ```js
-module.exports = [...require('eslint-config-fluxuator')]
+import fluxuatorConfig from 'eslint-config-fluxuator'
+
+export default [...fluxuatorConfig]
 ```
 
 3. You can override the settings from `eslint-config-fluxuator` by appending your own flat config object to the array. Learn more about [configuring ESLint](https://eslint.org/docs/latest/use/configure/configuration-files) on the ESLint website.
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator'),
+import fluxuatorConfig from 'eslint-config-fluxuator'
+
+export default [
+  ...fluxuatorConfig,
   {
     rules: {
       'some-annoying-rule': 'off',
@@ -68,14 +72,18 @@ pnpm add -D eslint-config-fluxuator \
 2. Create a file named `eslint.config.js` in the root folder of your project:
 
 ```js
-module.exports = [...require('eslint-config-fluxuator/node')]
+import nodeConfig from 'eslint-config-fluxuator/node'
+
+export default [...nodeConfig]
 ```
 
 3. You can override the settings from `eslint-config-fluxuator` by appending your own flat config object to the array. Learn more about [configuring ESLint](https://eslint.org/docs/latest/use/configure/configuration-files) on the ESLint website.
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator/node'),
+import nodeConfig from 'eslint-config-fluxuator/node'
+
+export default [
+  ...nodeConfig,
   {
     rules: {
       'some-annoying-rule': 'off',
@@ -105,10 +113,11 @@ pnpm add -D jest eslint-plugin-jest
    your installed Jest version, used by `eslint-plugin-jest`'s version-aware rules.
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator'),
-  ...require('eslint-config-fluxuator/jest')(require('jest/package.json').version),
-]
+import fluxuatorConfig from 'eslint-config-fluxuator'
+import jestConfig from 'eslint-config-fluxuator/jest'
+import jestPackageJson from 'jest/package.json' with { type: 'json' }
+
+export default [...fluxuatorConfig, ...jestConfig(jestPackageJson.version)]
 ```
 
 ### Vitest
@@ -126,7 +135,10 @@ pnpm add -D vitest @vitest/eslint-plugin
 2. Enable these rules by spreading the Vitest config into your ESLint config array.
 
 ```js
-module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/vitest')]
+import fluxuatorConfig from 'eslint-config-fluxuator'
+import vitestConfig from 'eslint-config-fluxuator/vitest'
+
+export default [...fluxuatorConfig, ...vitestConfig]
 ```
 
 ### React Testing Library
@@ -141,11 +153,11 @@ pnpm add -D eslint-plugin-testing-library
 and enable additional rules
 
 ```js
-module.exports = [
-  ...require('eslint-config-fluxuator'),
-  ...require('eslint-config-fluxuator/vitest'),
-  ...require('eslint-config-fluxuator/react-testing-library'),
-]
+import fluxuatorConfig from 'eslint-config-fluxuator'
+import vitestConfig from 'eslint-config-fluxuator/vitest'
+import reactTestingLibraryConfig from 'eslint-config-fluxuator/react-testing-library'
+
+export default [...fluxuatorConfig, ...vitestConfig, ...reactTestingLibraryConfig]
 ```
 
 ### Prettier
@@ -162,7 +174,10 @@ pnpm add -D prettier eslint-config-prettier eslint-plugin-prettier
    last, so it gets the chance to override other configs.
 
 ```js
-module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/prettier')]
+import fluxuatorConfig from 'eslint-config-fluxuator'
+import prettierConfig from 'eslint-config-fluxuator/prettier'
+
+export default [...fluxuatorConfig, ...prettierConfig]
 ```
 
 ### Accessibility Checks
@@ -173,7 +188,10 @@ activated:
 If you want to enable even more accessibility rules, spread the a11y config into your ESLint config array:
 
 ```js
-module.exports = [...require('eslint-config-fluxuator'), ...require('eslint-config-fluxuator/a11y')]
+import fluxuatorConfig from 'eslint-config-fluxuator'
+import a11yConfig from 'eslint-config-fluxuator/a11y'
+
+export default [...fluxuatorConfig, ...a11yConfig]
 ```
 
 ## Custom rules
@@ -182,3 +200,35 @@ This config also ships a small set of custom rules, in addition to the ones prov
 
 - [`fluxuator/no-class-comparison`](lib/plugins/rules/no-class-comparison.md) — enabled by default in `.`, `./node` and `./react`. Disallows comparing class instances with comparison operators and suggests alternative ways to compare them (e.g. an `.equals()` method).
 - [`fluxuator/restrict-import-paths`](lib/plugins/rules/restrict-import-paths.md) — registered but **not** enabled by default, and not currently exposed via a standalone export. Restricts import paths to a certain depth and suggests the aliased path instead (or vice versa), resolving path aliases from your project's `tsconfig.json`.
+
+## Shared config primitives
+
+If you're writing your own flat config object and want it to respect the same ignore patterns and file globs
+this config uses internally, import them from `eslint-config-fluxuator/config` instead of hardcoding your own.
+`eslint-config-fluxuator/config` is a single default export (an object of primitives), not named exports —
+destructure it after importing:
+
+```js
+import configPrimitives from 'eslint-config-fluxuator/config'
+
+const { ignores, onlyTypeScriptFiles } = configPrimitives
+
+export default [
+  ...fluxuatorConfig,
+  {
+    files: onlyTypeScriptFiles,
+    ignores,
+    rules: {
+      // your custom TypeScript-only rules
+    },
+  },
+]
+```
+
+The default export has these properties:
+
+- `ignores` — the default ignore patterns (`dist/`, `build/`, `node_modules/`, etc.)
+- `allSupportedFiles` — glob matching every supported JS/TS extension
+- `onlyTypeScriptFiles` — glob matching only TypeScript extensions
+- `testFiles` — glob matching test files (`__tests__/**` and `*.spec.*`/`*.test.*`)
+- `prettierConfig` — the shared Prettier options object this config passes to `prettier/prettier`
