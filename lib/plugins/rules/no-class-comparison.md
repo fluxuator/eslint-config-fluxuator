@@ -19,7 +19,7 @@ extend it in your [ESLint configuration file](https://eslint.org/docs/latest/use
 _eslint.config.js_
 
 ```javascript
-module.exports = {
+export default {
   rules: {
     'fluxuator/no-class-comparison': [
       'error',

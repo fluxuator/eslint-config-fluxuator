@@ -22,7 +22,7 @@ also specify the alternative path to the TypeScript configuration file.
 _eslint.config.js_
 
 ```javascript
-module.exports = {
+export default {
   rules: {
     'fluxuator/restrict-import-paths': 'warn',
   },
