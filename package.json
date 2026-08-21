@@ -26,8 +26,10 @@
     "./config": "./lib/config.js",
     "./jest": "./lib/jest.js",
     "./node": "./lib/node.js",
+    "./node/typed": "./lib/node.typed.js",
     "./prettier": "./lib/prettier.js",
     "./react": "./lib/react.js",
+    "./react/typed": "./lib/react.typed.js",
     "./react-testing-library": "./lib/react-testing-library.js",
     "./vitest": "./lib/vitest.js"
   },
