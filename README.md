@@ -101,6 +101,23 @@ That's it!
 
 ## Extensions
 
+### Type-aware TypeScript linting
+
+The base React and Node configs parse TypeScript but do not require a `tsconfig.json`. To enable rules that need
+TypeScript type information, spread the matching typed add-on after the base config. The typed add-ons use
+TypeScript's project service, so do not also configure `parserOptions.project`.
+
+```js
+import fluxuatorConfig from 'eslint-config-fluxuator'
+import typedReactConfig from 'eslint-config-fluxuator/react/typed'
+
+export default [...fluxuatorConfig, ...typedReactConfig]
+```
+
+For a Node project, import `eslint-config-fluxuator/node/typed` instead. If your project already configures
+`parserOptions.project`, keep the base config and layer your own typed ESLint configuration on top; scope it to
+TypeScript files so it does not try to parse `eslint.config.js` as part of the TypeScript project.
+
 ### Jest
 
 This config also ships with optional Jest rules for ESLint (based

@@ -60,9 +60,14 @@ them.
 
 - `lib/react.js` is the **base React/browser** config: parser is ESLint's built-in `espree` (JSX enabled via
   `parserOptions.ecmaFeatures.jsx`), combines `lib/rules/node.js` + `lib/rules/react.js`, and adds a TS-only
-  config object using `typescript-eslint` + `lib/rules/typescript.js`. `lib/index.js` is just a one-line re-export
-  of `lib/react.js`'s default export (`export { default } from './react.js'`) — it has no config logic of its own.
-- `lib/node.js` is the **Node-only** config: no React plugin, no JSX, same TS-only block layered on top.
+  config object using the non-type-aware `typescript-eslint` rules + `lib/rules/typescript.js`. `lib/index.js` is
+  just a one-line re-export of `lib/react.js`'s default export (`export { default } from './react.js'`) — it has no
+  config logic of its own.
+- `lib/node.js` is the **Node-only** config: no React plugin, no JSX, same non-type-aware TS-only block layered on
+  top.
+- Type-aware linting is opt-in via `lib/react.typed.js` and `lib/node.typed.js`, exposed as `./react/typed` and
+  `./node/typed`. Both use `lib/typed.js` to enable `typescript-eslint`'s project service and the rules exported as
+  `typeAwareRules` from `lib/rules/typescript.js`.
 - Both `lib/node.js` and `lib/react.js` already spread `lib/prettier.js` in at the end of their own array — there
   is no separate `*-recommended.js` bundle to opt into; Prettier and (for React) the React 17+ JSX transform are
   built into the base config directly.
