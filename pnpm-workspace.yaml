@@ -1,6 +1,46 @@
 # Saved dependencies will be configured with an exact version rather than using npm's default semver range operator
 saveExact: true
 
+minimumReleaseAge: 10080 # 7 days
+# Grandfather only the existing locked versions when adopting the 7-day policy.
+minimumReleaseAgeExclude:
+  - "@babel/generator@7.29.15"
+  - "@babel/helper-string-parser@7.29.15"
+  - "@babel/helpers@7.29.15"
+  - "@babel/parser@7.29.15"
+  - "@babel/traverse@7.29.15"
+  - "@babel/types@7.29.15"
+  - "@semantic-release/commit-analyzer@14.0.0-beta.5"
+  - "@semantic-release/core@1.0.0-beta.16"
+  - "@semantic-release/npm@14.0.0-beta.3"
+  - "@semantic-release/release-notes-generator@15.0.0-beta.4"
+  - "@typescript-eslint/eslint-plugin@8.73.0"
+  - "@typescript-eslint/parser@8.73.0"
+  - "@typescript-eslint/project-service@8.73.0"
+  - "@typescript-eslint/scope-manager@8.73.0"
+  - "@typescript-eslint/tsconfig-utils@8.73.0"
+  - "@typescript-eslint/type-utils@8.73.0"
+  - "@typescript-eslint/types@8.73.0"
+  - "@typescript-eslint/typescript-estree@8.73.0"
+  - "@typescript-eslint/utils@8.73.0"
+  - "@typescript-eslint/visitor-keys@8.73.0"
+  - "@vitest/mocker@5.1.1"
+  - "@vitest/spy@5.1.1"
+  - "baseline-browser-mapping@2.11.39"
+  - "browserslist@4.29.6"
+  - "electron-to-chromium@1.5.492"
+  - "ignore@7.0.16"
+  - "minimatch@11.0.9"
+  - "node-releases@2.0.65"
+  - "npm@11.21.3"
+  - "npm@12.2.3"
+  - "object-inspect@1.14.0"
+  - "source-map-js@1.2.4"
+  - "tinybench@6.2.4"
+  - "typescript-eslint@8.73.0"
+  - "update-browserslist-db@1.4.0"
+  - "vitest@5.1.1"
+
 publicHoistPattern:
   - "@commitlint*"
   - commitlint
