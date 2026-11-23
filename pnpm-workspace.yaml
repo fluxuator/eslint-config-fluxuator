@@ -6,9 +6,5 @@ publicHoistPattern:
   - commitlint
 
 allowBuilds:
-  esbuild: true
-  unrs-resolver: true
-
-# release-notes-generator v14 uses writer v8; preset v10 requires writer v9.
-overrides:
-  conventional-changelog-conventionalcommits: 9.3.1
+  esbuild: false
+  unrs-resolver: false
