@@ -6,7 +6,29 @@ on:
     branches: ["main"]
 
 jobs:
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PNPM
+        run: corepack enable
+
+      - name: Setup NodeJs
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Audit dependencies
+        run: pnpm audit
+
   build:
+    needs: [audit]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -42,10 +64,6 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
-      - name: Audit
-        continue-on-error: true
-        run: pnpm audit
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts

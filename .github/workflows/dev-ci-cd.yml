@@ -4,9 +4,30 @@ on:
   workflow_dispatch:
   pull_request:
   push:
-    branches: ['!main']
+    branches: ["!main"]
 
 jobs:
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PNPM
+        run: corepack enable
+
+      - name: Setup NodeJs
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Audit dependencies
+        run: pnpm audit
+
   build:
     runs-on: ubuntu-latest
 
@@ -22,8 +43,8 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
-          cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Get pnpm store directory
         shell: bash
@@ -39,10 +60,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Audit
-        continue-on-error: true
-        run: pnpm audit
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
 
@@ -54,16 +71,41 @@ jobs:
 
   dependabot-merge:
     name: Dependabot auto-merge
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    needs: ['build']
+    needs: [build, audit]
 
     permissions:
       pull-requests: write
       contents: write
 
     steps:
-      - uses: fastify/github-action-merge-dependabot@v3
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@d7267f607e9d3fb96fc2fbe83e0af444713e90b7
         with:
-          approve-only: true
-          target: patch
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge for matching patch updates
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        env:
+          DEPENDENCY_NAMES: ${{ steps.metadata.outputs.dependency-names }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          # Every dependency in a grouped PR must match an allowed package pattern.
+          IFS=',' read -ra dependencies <<< "$DEPENDENCY_NAMES"
+          [[ ${#dependencies[@]} -gt 0 ]] || exit 0
+          for dependency in "${dependencies[@]}"; do
+            dependency="${dependency//[[:space:]]/}"
+            case "$dependency" in
+              eslint|eslint-*|@eslint/*|@eslint-community/*|typescript-eslint|@typescript-eslint/*|@stylistic/eslint-*|jest|jest-*|@jest/*|vitest|@vitest/*|@testing-library/*) ;;
+              *) echo "Manual review required for $dependency"; exit 0 ;;
+            esac
+          done
+          gh pr merge --auto --squash --match-head-commit "$HEAD_SHA" "$PR_URL"
