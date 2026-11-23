@@ -8,3 +8,7 @@ publicHoistPattern:
 allowBuilds:
   esbuild: false
   unrs-resolver: false
+
+# release-notes-generator v14 uses writer v8; preset v10 requires writer v9.
+overrides:
+  conventional-changelog-conventionalcommits: 9.3.1
